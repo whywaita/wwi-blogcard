@@ -1,10 +1,14 @@
-.PHONY: help dev dev-build dev-down dev-destroy lint lint-fix test test-e2e build package clean composer-install plugin-check
+.PHONY: help dev dev-build dev-down dev-destroy lint lint-fix test test-e2e build package clean composer-install plugin-check prepare-plugin-dir
 
 .DEFAULT_GOAL := help
 
+# Plugin files to include in distribution
+PLUGIN_NAME := wwi-blogcard
+PLUGIN_FILES := wwi-blogcard.php includes/ build/ languages/ readme.txt
+
 # Help
 help:
-	@echo "WP Blogcard - Available Commands"
+	@echo "WWI Blogcard - Available Commands"
 	@echo ""
 	@echo "Development:"
 	@echo "  make dev          Start development environment (docker compose up)"
@@ -23,7 +27,7 @@ help:
 	@echo ""
 	@echo "Build:"
 	@echo "  make build        Build assets with webpack"
-	@echo "  make package      Build and create dist/wp-blogcard.zip"
+	@echo "  make package      Build and create dist/$(PLUGIN_NAME).zip"
 	@echo "  make clean        Remove build artifacts and dependencies"
 	@echo ""
 	@echo "Dependencies:"
@@ -48,26 +52,26 @@ composer-install:
 
 # Linting
 lint:
-	@echo "🔍 Running all linters..."
-	@echo "📜 Linting JavaScript..."
+	@echo "Running all linters..."
+	@echo "Linting JavaScript..."
 	npm run lint:js
-	@echo "🎨 Linting CSS..."
+	@echo "Linting CSS..."
 	npm run lint:css
-	@echo "🐘 Linting PHP..."
+	@echo "Linting PHP..."
 	docker compose run --rm php composer phpcs
-	@echo "✅ All linters passed!"
+	@echo "All linters passed!"
 
 lint-fix:
-	@echo "🔧 Fixing lint issues..."
+	@echo "Fixing lint issues..."
 	npm run format
 	docker compose run --rm php composer phpcbf || true
-	@echo "✅ Lint fixes applied!"
+	@echo "Lint fixes applied!"
 
 # Testing
 test: composer-install
-	@echo "🧪 Running PHP tests..."
+	@echo "Running PHP tests..."
 	docker compose run --rm php composer test
-	@echo "✅ Tests completed!"
+	@echo "Tests completed!"
 
 test-e2e:
 	npm run test:e2e
@@ -76,27 +80,34 @@ test-e2e:
 build:
 	npm run build
 
+# Prepare plugin directory (used by CI and plugin-check)
+prepare-plugin-dir: build
+	rm -rf plugin-check-dir
+	mkdir -p plugin-check-dir/$(PLUGIN_NAME)/languages
+	cp wwi-blogcard.php readme.txt plugin-check-dir/$(PLUGIN_NAME)/
+	cp -r includes/ build/ plugin-check-dir/$(PLUGIN_NAME)/
+	find languages/ -type f ! -name ".*" -exec cp {} plugin-check-dir/$(PLUGIN_NAME)/languages/ \; 2>/dev/null || true
+
 # Package
-package: build
-	@echo "📦 Creating plugin package..."
+package: prepare-plugin-dir
+	@echo "Creating plugin package..."
 	rm -rf dist/
 	mkdir -p dist
-	zip -r dist/wp-blogcard.zip \
-		wp-blogcard.php \
-		includes/ \
-		build/ \
-		readme.txt \
-		-x "*.git*" -x "*.DS_Store"
-	@echo "✅ Package created: dist/wp-blogcard.zip"
+	cd plugin-check-dir && zip -r ../dist/$(PLUGIN_NAME).zip $(PLUGIN_NAME) -x "*.git*" -x "*.DS_Store"
+	rm -rf plugin-check-dir
+	@echo "Package created: dist/$(PLUGIN_NAME).zip"
 
 # Clean
 clean:
 	rm -rf build/
 	rm -rf node_modules/
 	rm -rf vendor/
+	rm -rf plugin-check-dir/
+	rm -rf dist/
 
-# Plugin Check
-plugin-check: build
+# Plugin Check (local)
+plugin-check: prepare-plugin-dir
 	@echo "Running WordPress Plugin Check..."
 	npm run wp-env start
-	npm run wp-env run cli -- wp plugin check wwi-blogcard --exclude-directories=.git,.github,.wordpress-org,node_modules,vendor,tests,e2e,docs,src,dist,test-results,.claude
+	npm run wp-env run cli -- wp plugin check /var/www/html/wp-content/plugins/$(PLUGIN_NAME)/plugin-check-dir/$(PLUGIN_NAME)
+	rm -rf plugin-check-dir

@@ -25,18 +25,8 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Build
-        run: npm run build
-
-      - name: Create plugin ZIP
-        run: |
-          mkdir -p dist
-          zip -r dist/wwi-blogcard.zip \
-            wwi-blogcard.php \
-            includes/ \
-            build/ \
-            readme.txt \
-            -x "*.git*" -x "*.DS_Store"
+      - name: Build and package
+        run: make package
 
       - name: Upload release asset
         uses: softprops/action-gh-release@v2

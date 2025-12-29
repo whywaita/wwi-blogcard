@@ -51,6 +51,13 @@ add_action( 'init', 'wwi_blogcard_init' );
  * @return void
  */
 function wwi_blogcard_register_block() {
-	register_block_type( WWI_BLOGCARD_PLUGIN_DIR . 'build/wwi-blogcard' );
+	$block = register_block_type( WWI_BLOGCARD_PLUGIN_DIR . 'build/wwi-blogcard' );
+
+	// Set up JavaScript translations.
+	if ( $block && ! empty( $block->editor_script_handles ) ) {
+		foreach ( $block->editor_script_handles as $handle ) {
+			wp_set_script_translations( $handle, 'wwi-blogcard', WWI_BLOGCARD_PLUGIN_DIR . 'languages' );
+		}
+	}
 }
 add_action( 'init', 'wwi_blogcard_register_block' );

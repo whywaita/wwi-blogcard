@@ -65,9 +65,7 @@ jobs:
           path: build/
 
       - name: Prepare plugin for check
-        run: |
-          mkdir -p plugin-check-dir/wwi-blogcard
-          cp -r wwi-blogcard.php includes/ build/ readme.txt plugin-check-dir/wwi-blogcard/
+        run: make prepare-plugin-dir
 
       - name: Run Plugin Check
         uses: WordPress/plugin-check-action@v1

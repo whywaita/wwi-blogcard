@@ -128,7 +128,7 @@ test.describe( 'Blogcard Block', () => {
 		await fetchButton.click();
 
 		// Wait for preview to load - try iframe first (most common), then main page
-		const previewTitle = editor.locator( '.wp-blogcard__title' );
+		const previewTitle = editor.locator( '.wwi-blogcard__title' );
 		await expect( previewTitle ).toBeVisible( { timeout: 15000 } );
 	} );
 } );

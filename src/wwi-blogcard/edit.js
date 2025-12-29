@@ -36,7 +36,7 @@ export default function Edit( { attributes, setAttributes } ) {
 	 */
 	const fetchOgpData = async () => {
 		if ( ! inputUrl ) {
-			setError( __( 'Please enter a URL.', 'wp-blogcard' ) );
+			setError( __( 'Please enter a URL.', 'wwi-blogcard' ) );
 			return;
 		}
 
@@ -45,7 +45,7 @@ export default function Edit( { attributes, setAttributes } ) {
 
 		try {
 			const response = await apiFetch( {
-				path: '/wp-blogcard/v1/fetch',
+				path: '/wwi-blogcard/v1/fetch',
 				method: 'POST',
 				data: { url: inputUrl },
 			} );
@@ -62,12 +62,12 @@ export default function Edit( { attributes, setAttributes } ) {
 			} else {
 				setError(
 					response.message ||
-						__( 'Failed to fetch OGP data.', 'wp-blogcard' )
+						__( 'Failed to fetch OGP data.', 'wwi-blogcard' )
 				);
 			}
 		} catch ( err ) {
 			setError(
-				err.message || __( 'Failed to fetch OGP data.', 'wp-blogcard' )
+				err.message || __( 'Failed to fetch OGP data.', 'wwi-blogcard' )
 			);
 		} finally {
 			setIsLoading( false );
@@ -101,16 +101,16 @@ export default function Edit( { attributes, setAttributes } ) {
 				) }
 				<Placeholder
 					icon={ link }
-					label={ __( 'Blogcard', 'wp-blogcard' ) }
+					label={ __( 'Blogcard', 'wwi-blogcard' ) }
 					instructions={ __(
 						'Enter a URL to create a blog card.',
-						'wp-blogcard'
+						'wwi-blogcard'
 					) }
 				>
-					<div className="wp-blogcard-editor__input-wrapper">
+					<div className="wwi-blogcard-editor__input-wrapper">
 						<TextControl
 							__nextHasNoMarginBottom
-							label={ __( 'URL', 'wp-blogcard' ) }
+							label={ __( 'URL', 'wwi-blogcard' ) }
 							hideLabelFromVision
 							value={ inputUrl }
 							onChange={ setInputUrl }
@@ -123,7 +123,7 @@ export default function Edit( { attributes, setAttributes } ) {
 							disabled={ isLoading }
 						>
 							{ isLoading && <Spinner /> }
-							{ __( 'Fetch', 'wp-blogcard' ) }
+							{ __( 'Fetch', 'wwi-blogcard' ) }
 						</Button>
 					</div>
 				</Placeholder>
@@ -134,40 +134,40 @@ export default function Edit( { attributes, setAttributes } ) {
 	// Show preview
 	return (
 		<div { ...blockProps }>
-			<div className="wp-blogcard">
+			<div className="wwi-blogcard">
 				<a href={ url } target="_blank" rel="noopener noreferrer">
-					<div className="wp-blogcard__title">{ title }</div>
-					<div className="wp-blogcard__body">
-						<div className="wp-blogcard__content">
+					<div className="wwi-blogcard__title">{ title }</div>
+					<div className="wwi-blogcard__body">
+						<div className="wwi-blogcard__content">
 							{ description && (
-								<div className="wp-blogcard__description">
+								<div className="wwi-blogcard__description">
 									{ description }
 								</div>
 							) }
-							<div className="wp-blogcard__meta">
+							<div className="wwi-blogcard__meta">
 								{ favicon && (
 									<img
-										className="wp-blogcard__favicon"
+										className="wwi-blogcard__favicon"
 										src={ favicon }
 										alt=""
 									/>
 								) }
-								<span className="wp-blogcard__site-name">
+								<span className="wwi-blogcard__site-name">
 									{ siteName }
 								</span>
 							</div>
 						</div>
 						{ image && (
-							<div className="wp-blogcard__image">
+							<div className="wwi-blogcard__image">
 								<img src={ image } alt={ title } />
 							</div>
 						) }
 					</div>
 				</a>
 			</div>
-			<div className="wp-blogcard-editor__actions">
+			<div className="wwi-blogcard-editor__actions">
 				<Button variant="secondary" onClick={ resetBlock }>
-					{ __( 'Change URL', 'wp-blogcard' ) }
+					{ __( 'Change URL', 'wwi-blogcard' ) }
 				</Button>
 			</div>
 		</div>
