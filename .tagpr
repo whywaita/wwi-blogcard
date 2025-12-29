@@ -6,7 +6,7 @@
 releaseBranch = main
 
 # Version files to update
-versionFile = package.json, wp-blogcard.php, readme.txt
+versionFile = package.json, wwi-blogcard.php, readme.txt
 
 # Use v prefix for tags (e.g., v1.0.0)
 vPrefix = true

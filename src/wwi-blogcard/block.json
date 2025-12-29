@@ -1,0 +1,45 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "wwi-blogcard/blogcard",
+	"version": "1.0.0",
+	"title": "Blogcard",
+	"category": "embed",
+	"icon": "admin-links",
+	"description": "Create a beautiful blog card from any URL using OGP information.",
+	"keywords": ["blogcard", "ogp", "embed", "link", "card"],
+	"supports": {
+		"html": false,
+		"align": ["wide", "full"]
+	},
+	"attributes": {
+		"url": {
+			"type": "string",
+			"default": ""
+		},
+		"title": {
+			"type": "string",
+			"default": ""
+		},
+		"description": {
+			"type": "string",
+			"default": ""
+		},
+		"image": {
+			"type": "string",
+			"default": ""
+		},
+		"siteName": {
+			"type": "string",
+			"default": ""
+		},
+		"favicon": {
+			"type": "string",
+			"default": ""
+		}
+	},
+	"textdomain": "wwi-blogcard",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css"
+}

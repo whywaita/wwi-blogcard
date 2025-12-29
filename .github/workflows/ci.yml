@@ -9,8 +9,8 @@ on:
       - main
 
 jobs:
-  lint-js:
-    name: Lint JavaScript
+  lint-and-build:
+    name: Lint and Build
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -31,6 +31,9 @@ jobs:
       - name: Lint CSS
         run: npm run lint:css
 
+      - name: Build
+        run: npm run build
+
   lint-php:
     name: Lint PHP
     runs-on: ubuntu-latest
@@ -44,14 +47,21 @@ jobs:
           php-version: '8.2'
           tools: composer:v2
 
+      - name: Cache Composer dependencies
+        uses: actions/cache@v5
+        with:
+          path: vendor
+          key: composer-${{ hashFiles('composer.lock') }}
+          restore-keys: composer-
+
       - name: Install dependencies
         run: composer install --prefer-dist --no-progress
 
       - name: Run PHPCS
         run: composer phpcs
 
-  build:
-    name: Build
+  plugin-check:
+    name: Plugin Check
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -69,22 +79,24 @@ jobs:
       - name: Build
         run: npm run build
 
-      - name: Upload build artifacts
-        uses: actions/upload-artifact@v6
+      - name: Prepare plugin for check
+        run: make prepare-plugin-dir
+
+      - name: Run Plugin Check
+        uses: WordPress/plugin-check-action@v1
         with:
-          name: build
-          path: build/
+          wp-version: 'latest'
+          build-dir: plugin-check-dir/wwi-blogcard
 
   test-e2e:
     name: E2E Tests
     runs-on: ubuntu-latest
-    needs: build
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Setup Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
           node-version: '22'
           cache: 'npm'
@@ -92,14 +104,18 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Cache Playwright browsers
+        uses: actions/cache@v5
+        with:
+          path: ~/.cache/ms-playwright
+          key: playwright-${{ hashFiles('package-lock.json') }}
+          restore-keys: playwright-
+
       - name: Install Playwright browsers
         run: npx playwright install chromium --with-deps
 
-      - name: Download build artifacts
-        uses: actions/download-artifact@v4
-        with:
-          name: build
-          path: build/
+      - name: Build
+        run: npm run build
 
       - name: Start WordPress environment
         run: npm run wp-env start
@@ -108,7 +124,7 @@ jobs:
         run: npm run test:e2e
 
       - name: Upload test results
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         if: failure()
         with:
           name: playwright-report

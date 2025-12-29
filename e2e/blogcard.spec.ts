@@ -72,7 +72,7 @@ test.describe( 'Blogcard Block', () => {
 
 		// Verify block is added
 		await expect(
-			editor.locator( '.wp-block-wp-blogcard-blogcard' )
+			editor.locator( '.wp-block-wwi-blogcard-blogcard' )
 		).toBeVisible( { timeout: 10000 } );
 	} );
 
@@ -102,7 +102,7 @@ test.describe( 'Blogcard Block', () => {
 
 		// Wait for block to be added
 		await editor
-			.locator( '.wp-block-wp-blogcard-blogcard' )
+			.locator( '.wp-block-wwi-blogcard-blogcard' )
 			.waitFor( { timeout: 10000 } );
 
 		// Enter URL - try main page first, then iframe
@@ -128,7 +128,7 @@ test.describe( 'Blogcard Block', () => {
 		await fetchButton.click();
 
 		// Wait for preview to load - try iframe first (most common), then main page
-		const previewTitle = editor.locator( '.wp-blogcard__title' );
+		const previewTitle = editor.locator( '.wwi-blogcard__title' );
 		await expect( previewTitle ).toBeVisible( { timeout: 15000 } );
 	} );
 } );

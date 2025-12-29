@@ -25,23 +25,13 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Build
-        run: npm run build
-
-      - name: Create plugin ZIP
-        run: |
-          mkdir -p dist
-          zip -r dist/wp-blogcard.zip \
-            wp-blogcard.php \
-            includes/ \
-            build/ \
-            readme.txt \
-            -x "*.git*" -x "*.DS_Store"
+      - name: Build and package
+        run: make package
 
       - name: Upload release asset
         uses: softprops/action-gh-release@v2
         with:
-          files: dist/wp-blogcard.zip
+          files: dist/wwi-blogcard.zip
 
 # memo(whywaita): WIP for releases in wordpress site
 #   deploy:
@@ -71,6 +61,6 @@ jobs:
 #         env:
 #           SVN_USERNAME: ${{ secrets.WP_ORG_USERNAME }}
 #           SVN_PASSWORD: ${{ secrets.WP_ORG_PASSWORD }}
-#           SLUG: wp-blogcard
+#           SLUG: wwi-blogcard
 #           BUILD_DIR: .
 #           ASSETS_DIR: .wordpress-org

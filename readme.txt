@@ -1,4 +1,4 @@
-=== WP Blogcard ===
+=== WWI Blogcard ===
 Contributors: whywaita
 Tags: blogcard, ogp, embed, link, card
 Requires at least: 6.0
@@ -12,7 +12,7 @@ A WordPress block plugin that generates beautiful blog cards from URLs using OGP
 
 == Description ==
 
-WP Blogcard is a Gutenberg block plugin that creates visually appealing blog cards from any URL. Simply paste a URL, and the plugin automatically fetches OGP (Open Graph Protocol) information to generate a rich preview card.
+WWI Blogcard is a Gutenberg block plugin that creates visually appealing blog cards from any URL. Simply paste a URL, and the plugin automatically fetches OGP (Open Graph Protocol) information to generate a rich preview card.
 
 = Features =
 
@@ -32,7 +32,7 @@ WP Blogcard is a Gutenberg block plugin that creates visually appealing blog car
 
 == Installation ==
 
-1. Upload the plugin files to the `/wp-content/plugins/wp-blogcard` directory, or install the plugin through the WordPress plugins screen directly.
+1. Upload the plugin files to the `/wp-content/plugins/wwi-blogcard` directory, or install the plugin through the WordPress plugins screen directly.
 2. Activate the plugin through the 'Plugins' screen in WordPress.
 3. Use the "Blogcard" block in the Gutenberg editor.
 
@@ -64,4 +64,4 @@ No, for security reasons (SSRF protection), the plugin blocks requests to privat
 == Upgrade Notice ==
 
 = 1.0.0 =
-Initial release of WP Blogcard.
+Initial release of WWI Blogcard.
