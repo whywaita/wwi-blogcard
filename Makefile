@@ -1,4 +1,29 @@
-.PHONY: dev dev-build dev-down dev-destroy lint lint-fix test test-e2e build package clean
+.PHONY: help dev dev-build dev-down dev-destroy lint lint-fix test test-e2e build package clean
+
+.DEFAULT_GOAL := help
+
+# Help
+help:
+	@echo "WP Blogcard - Available Commands"
+	@echo ""
+	@echo "Development:"
+	@echo "  make dev          Start development environment (docker compose up)"
+	@echo "  make dev-build    Start with rebuild (docker compose up --build)"
+	@echo "  make dev-down     Stop development environment"
+	@echo "  make dev-destroy  Stop and remove volumes"
+	@echo ""
+	@echo "Linting:"
+	@echo "  make lint         Run all linters (JS, CSS, PHP)"
+	@echo "  make lint-fix     Auto-fix lint issues"
+	@echo ""
+	@echo "Testing:"
+	@echo "  make test         Run PHP unit tests"
+	@echo "  make test-e2e     Run Playwright E2E tests"
+	@echo ""
+	@echo "Build:"
+	@echo "  make build        Build assets with webpack"
+	@echo "  make package      Build and create dist/wp-blogcard.zip"
+	@echo "  make clean        Remove build artifacts and dependencies"
 
 # Development
 dev:
