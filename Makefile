@@ -81,7 +81,8 @@ build:
 	npm run build
 
 # Prepare plugin directory (used by CI and plugin-check)
-prepare-plugin-dir: build
+# Note: Assumes build/ directory already exists
+prepare-plugin-dir:
 	rm -rf plugin-check-dir
 	mkdir -p plugin-check-dir/$(PLUGIN_NAME)/languages
 	cp wwi-blogcard.php readme.txt plugin-check-dir/$(PLUGIN_NAME)/
@@ -90,7 +91,7 @@ prepare-plugin-dir: build
 	find languages/ -type f ! -name ".*" -exec cp {} plugin-check-dir/$(PLUGIN_NAME)/languages/ \; 2>/dev/null || true
 
 # Package
-package: prepare-plugin-dir
+package: build prepare-plugin-dir
 	@echo "Creating plugin package..."
 	rm -rf dist/
 	mkdir -p dist
@@ -107,7 +108,7 @@ clean:
 	rm -rf dist/
 
 # Plugin Check (local)
-plugin-check: prepare-plugin-dir
+plugin-check: build prepare-plugin-dir
 	@echo "Running WordPress Plugin Check..."
 	npm run wp-env start
 	npm run wp-env run cli -- wp plugin check /var/www/html/wp-content/plugins/$(PLUGIN_NAME)/plugin-check-dir/$(PLUGIN_NAME)
