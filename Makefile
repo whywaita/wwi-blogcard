@@ -1,4 +1,4 @@
-.PHONY: help dev dev-build dev-down dev-destroy lint lint-fix test test-e2e build package clean composer-install
+.PHONY: help dev dev-build dev-down dev-destroy lint lint-fix test test-e2e build package clean composer-install plugin-check
 
 .DEFAULT_GOAL := help
 
@@ -15,6 +15,7 @@ help:
 	@echo "Linting:"
 	@echo "  make lint         Run all linters (JS, CSS, PHP)"
 	@echo "  make lint-fix     Auto-fix lint issues"
+	@echo "  make plugin-check Run WordPress Plugin Check"
 	@echo ""
 	@echo "Testing:"
 	@echo "  make test         Run PHP unit tests (via Docker)"
@@ -93,3 +94,9 @@ clean:
 	rm -rf build/
 	rm -rf node_modules/
 	rm -rf vendor/
+
+# Plugin Check
+plugin-check: build
+	@echo "Running WordPress Plugin Check..."
+	npm run wp-env start
+	npm run wp-env run cli -- wp plugin check wwi-blogcard --exclude-directories=.git,.github,.wordpress-org,node_modules,vendor,tests,e2e,docs,src,dist,test-results,.claude
