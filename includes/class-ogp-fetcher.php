@@ -139,8 +139,11 @@ class WP_Blogcard_OGP_Fetcher {
 
 		$doc = new DOMDocument();
 
-		// Convert encoding if needed and load HTML.
-		$html = mb_convert_encoding( $html, 'HTML-ENTITIES', 'auto' );
+		// Ensure proper UTF-8 encoding for DOMDocument.
+		// Add UTF-8 meta tag if not present to handle multibyte characters correctly.
+		if ( stripos( $html, 'charset=' ) === false ) {
+			$html = '<?xml encoding="UTF-8">' . $html;
+		}
 		$doc->loadHTML( $html, LIBXML_NOWARNING | LIBXML_NOERROR );
 
 		// Restore error handling.

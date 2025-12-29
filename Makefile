@@ -1,4 +1,4 @@
-.PHONY: help dev dev-build dev-down dev-destroy lint lint-fix test test-e2e build package clean
+.PHONY: help dev dev-build dev-down dev-destroy lint lint-fix test test-e2e build package clean composer-install
 
 .DEFAULT_GOAL := help
 
@@ -17,13 +17,16 @@ help:
 	@echo "  make lint-fix     Auto-fix lint issues"
 	@echo ""
 	@echo "Testing:"
-	@echo "  make test         Run PHP unit tests"
+	@echo "  make test         Run PHP unit tests (via Docker)"
 	@echo "  make test-e2e     Run Playwright E2E tests"
 	@echo ""
 	@echo "Build:"
 	@echo "  make build        Build assets with webpack"
 	@echo "  make package      Build and create dist/wp-blogcard.zip"
 	@echo "  make clean        Remove build artifacts and dependencies"
+	@echo ""
+	@echo "Dependencies:"
+	@echo "  make composer-install  Install PHP dependencies via Docker"
 
 # Development
 dev:
@@ -38,6 +41,10 @@ dev-down:
 dev-destroy:
 	docker compose down -v
 
+# Dependencies
+composer-install:
+	docker compose run --rm php composer install
+
 # Linting
 lint:
 	@echo "🔍 Running all linters..."
@@ -46,18 +53,20 @@ lint:
 	@echo "🎨 Linting CSS..."
 	npm run lint:css
 	@echo "🐘 Linting PHP..."
-	composer phpcs
+	docker compose run --rm php composer phpcs
 	@echo "✅ All linters passed!"
 
 lint-fix:
 	@echo "🔧 Fixing lint issues..."
 	npm run format
-	composer phpcbf || true
+	docker compose run --rm php composer phpcbf || true
 	@echo "✅ Lint fixes applied!"
 
 # Testing
-test:
-	composer test
+test: composer-install
+	@echo "🧪 Running PHP tests..."
+	docker compose run --rm php composer test
+	@echo "✅ Tests completed!"
 
 test-e2e:
 	npm run test:e2e

@@ -45,11 +45,13 @@
 ## Phase 4: Testing
 
 - [x] PHPUnit setup
-- [ ] Unit tests for OGP fetcher
-- [ ] Unit tests for cache class
-- [ ] Integration tests for REST API
+- [x] Unit tests for OGP fetcher
+- [x] Unit tests for cache class
+- [x] Integration tests for REST API
 - [x] Playwright E2E setup
-- [ ] E2E tests for block editor
+- [x] E2E tests for block editor
+
+**Note:** All tests follow the t_wada style methodology. See [docs/testing.md](testing.md) for details.
 
 ## Phase 5: Documentation & Release
 

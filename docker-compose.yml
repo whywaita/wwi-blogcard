@@ -25,6 +25,15 @@ services:
     volumes:
       - db_data:/var/lib/mysql
 
+  # PHP container for running tests and linting
+  php:
+    image: composer:latest
+    working_dir: /app
+    volumes:
+      - .:/app
+    entrypoint: [""]
+    command: ["echo", "Use 'docker compose run php <command>' to run commands"]
+
 volumes:
   wordpress_data:
   db_data:

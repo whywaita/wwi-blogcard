@@ -11,7 +11,7 @@ WP Blogcard is a WordPress Gutenberg block plugin that generates beautiful blog 
 - **Backend**: PHP 7.4+, WordPress 6.0+
 - **Frontend**: React (JSX), WordPress Block API v3
 - **Build Tools**: @wordpress/scripts, webpack
-- **Testing**: PHPUnit (PHP), Playwright (E2E)
+- **Testing**: PHPUnit (PHP), Playwright (E2E) - t_wada style methodology
 - **Linting**: ESLint, Stylelint, PHP_CodeSniffer (WordPress Coding Standards)
 
 ## Project Structure
@@ -97,6 +97,35 @@ make test-e2e
 
 - `POST /wp-blogcard/v1/fetch` - Fetch OGP data for a URL (requires `edit_posts` capability)
 - `POST /wp-blogcard/v1/clear-cache` - Clear cache (requires `manage_options` capability)
+
+## Testing Methodology: t_wada Style
+
+This project follows the **t_wada style** testing methodology:
+
+1. **Arrange-Act-Assert (AAA) pattern** - Every test has clear setup, execution, and verification phases
+2. **One logical assertion per test** - Each test verifies a single behavior
+3. **Descriptive test names** - Test names describe the behavior being tested
+4. **Tests as documentation** - Tests serve as living documentation
+
+Example:
+```php
+/**
+ * @test
+ * OGPタグからタイトルを正しく抽出できる
+ */
+public function parse_ogp_extracts_title_from_og_title_tag() {
+    // Arrange
+    $html = $this->create_html_with_ogp( array( 'og:title' => 'Test Title' ) );
+
+    // Act
+    $result = WP_Blogcard_OGP_Fetcher::parse_ogp( $html, $url );
+
+    // Assert
+    $this->assertSame( 'Test Title', $result['title'] );
+}
+```
+
+See [docs/testing.md](docs/testing.md) for full details.
 
 ## Release Process
 
