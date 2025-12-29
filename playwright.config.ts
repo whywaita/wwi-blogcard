@@ -8,7 +8,7 @@ export default defineConfig( {
 	workers: process.env.CI ? 1 : undefined,
 	reporter: 'html',
 	use: {
-		baseURL: 'http://localhost:8888',
+		baseURL: process.env.WP_BASE_URL || 'http://localhost:9999',
 		trace: 'on-first-retry',
 	},
 	projects: [
@@ -18,8 +18,9 @@ export default defineConfig( {
 		},
 	],
 	webServer: {
-		command: 'npm run dev',
-		url: 'http://localhost:8888',
-		reuseExistingServer: ! process.env.CI,
+		command: 'npm run wp-env start',
+		url: process.env.WP_BASE_URL || 'http://localhost:9999',
+		reuseExistingServer: true,
+		timeout: 120000,
 	},
 } );
