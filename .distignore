@@ -2,12 +2,15 @@
 .git
 .github
 .wordpress-org
+.claude
 node_modules
 vendor
 tests
 e2e
 docs
 src
+dist
+test-results
 
 # Files
 .distignore
@@ -16,6 +19,8 @@ src
 .eslintrc
 .gitignore
 .tagpr
+.wp-env.json
+.phpunit.result.cache
 composer.json
 composer.lock
 package.json

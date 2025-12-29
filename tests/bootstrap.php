@@ -38,6 +38,7 @@ if ( ! function_exists( 'wp_parse_url' ) ) {
 	 * @return mixed Parsed URL or specific component.
 	 */
 	function wp_parse_url( $url, $component = -1 ) {
+		// phpcs:ignore WordPress.WP.AlternativeFunctions.parse_url_parse_url -- Mock function for testing.
 		return parse_url( $url, $component );
 	}
 }
@@ -98,6 +99,7 @@ if ( ! function_exists( 'sanitize_text_field' ) ) {
 	 * @return string Sanitized string.
 	 */
 	function sanitize_text_field( $str ) {
+		// phpcs:ignore WordPress.WP.AlternativeFunctions.strip_tags_strip_tags -- Mock function for testing.
 		return trim( strip_tags( $str ) );
 	}
 }
@@ -110,6 +112,7 @@ if ( ! function_exists( 'wp_kses_post' ) ) {
 	 * @return string Filtered content.
 	 */
 	function wp_kses_post( $data ) {
+		// phpcs:ignore WordPress.WP.AlternativeFunctions.strip_tags_strip_tags -- Mock function for testing.
 		return strip_tags( $data, '<a><br><p><strong><em><ul><ol><li>' );
 	}
 }
@@ -135,6 +138,7 @@ if ( ! function_exists( '_e' ) ) {
 	 * @param string $domain Text domain.
 	 */
 	function _e( $text, $domain = 'default' ) {
+		// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Mock function for testing.
 		echo $text;
 	}
 }
