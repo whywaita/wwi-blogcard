@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
-<ruleset name="WP Blogcard">
-	<description>PHP_CodeSniffer configuration for WP Blogcard plugin.</description>
+<ruleset name="WWI Blogcard">
+	<description>PHP_CodeSniffer configuration for WWI Blogcard plugin.</description>
 
 	<!-- What to scan -->
 	<file>.</file>
@@ -34,7 +34,7 @@
 	<rule ref="WordPress.WP.I18n">
 		<properties>
 			<property name="text_domain" type="array">
-				<element value="wp-blogcard"/>
+				<element value="wwi-blogcard"/>
 			</property>
 		</properties>
 	</rule>
