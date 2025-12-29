@@ -47,7 +47,11 @@ export default function save( { attributes } ) {
 						</div>
 						{ image && (
 							<div className="wp-blogcard__image">
-								<img src={ image } alt={ title } loading="lazy" />
+								<img
+									src={ image }
+									alt={ title }
+									loading="lazy"
+								/>
 							</div>
 						) }
 					</div>

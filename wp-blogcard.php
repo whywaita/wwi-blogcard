@@ -29,9 +29,9 @@ define( 'WP_BLOGCARD_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
 /**
  * Load plugin classes.
  */
-require_once WP_BLOGCARD_PLUGIN_DIR . 'includes/class-cache.php';
-require_once WP_BLOGCARD_PLUGIN_DIR . 'includes/class-ogp-fetcher.php';
-require_once WP_BLOGCARD_PLUGIN_DIR . 'includes/class-rest-api.php';
+require_once WP_BLOGCARD_PLUGIN_DIR . 'includes/class-wp-blogcard-cache.php';
+require_once WP_BLOGCARD_PLUGIN_DIR . 'includes/class-wp-blogcard-ogp-fetcher.php';
+require_once WP_BLOGCARD_PLUGIN_DIR . 'includes/class-wp-blogcard-rest-api.php';
 
 /**
  * Initialize the plugin.
