@@ -136,30 +136,32 @@ export default function Edit( { attributes, setAttributes } ) {
 		<div { ...blockProps }>
 			<div className="wp-blogcard">
 				<a href={ url } target="_blank" rel="noopener noreferrer">
-					{ image && (
-						<div className="wp-blogcard__image">
-							<img src={ image } alt={ title } />
+					<div className="wp-blogcard__title">{ title }</div>
+					<div className="wp-blogcard__body">
+						<div className="wp-blogcard__content">
+							{ description && (
+								<div className="wp-blogcard__description">
+									{ description }
+								</div>
+							) }
+							<div className="wp-blogcard__meta">
+								{ favicon && (
+									<img
+										className="wp-blogcard__favicon"
+										src={ favicon }
+										alt=""
+									/>
+								) }
+								<span className="wp-blogcard__site-name">
+									{ siteName }
+								</span>
+							</div>
 						</div>
-					) }
-					<div className="wp-blogcard__content">
-						<div className="wp-blogcard__title">{ title }</div>
-						{ description && (
-							<div className="wp-blogcard__description">
-								{ description }
+						{ image && (
+							<div className="wp-blogcard__image">
+								<img src={ image } alt={ title } />
 							</div>
 						) }
-						<div className="wp-blogcard__meta">
-							{ favicon && (
-								<img
-									className="wp-blogcard__favicon"
-									src={ favicon }
-									alt=""
-								/>
-							) }
-							<span className="wp-blogcard__site-name">
-								{ siteName }
-							</span>
-						</div>
 					</div>
 				</a>
 			</div>
