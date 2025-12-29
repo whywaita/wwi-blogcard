@@ -4,40 +4,40 @@
 
 // CSS Custom Properties for theming
 :root {
-	--wp-blogcard-border-color: #e0e0e0;
-	--wp-blogcard-background: #fff;
-	--wp-blogcard-text-color: #333;
-	--wp-blogcard-description-color: #666;
-	--wp-blogcard-meta-color: #999;
-	--wp-blogcard-hover-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-	--wp-blogcard-border-radius: 8px;
-	--wp-blogcard-image-size: 120px;
+	--wwi-blogcard-border-color: #e0e0e0;
+	--wwi-blogcard-background: #fff;
+	--wwi-blogcard-text-color: #333;
+	--wwi-blogcard-description-color: #666;
+	--wwi-blogcard-meta-color: #999;
+	--wwi-blogcard-hover-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+	--wwi-blogcard-border-radius: 8px;
+	--wwi-blogcard-image-size: 120px;
 }
 
 // Dark mode support
 @media (prefers-color-scheme: dark) {
 
 	:root {
-		--wp-blogcard-border-color: #444;
-		--wp-blogcard-background: #2a2a2a;
-		--wp-blogcard-text-color: #f0f0f0;
-		--wp-blogcard-description-color: #b0b0b0;
-		--wp-blogcard-meta-color: #888;
-		--wp-blogcard-hover-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+		--wwi-blogcard-border-color: #444;
+		--wwi-blogcard-background: #2a2a2a;
+		--wwi-blogcard-text-color: #f0f0f0;
+		--wwi-blogcard-description-color: #b0b0b0;
+		--wwi-blogcard-meta-color: #888;
+		--wwi-blogcard-hover-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 	}
 }
 
-.wp-blogcard {
+.wwi-blogcard {
 	display: block;
 	margin: 1.5em 0;
-	border: 1px solid var(--wp-blogcard-border-color);
-	border-radius: var(--wp-blogcard-border-radius);
-	background: var(--wp-blogcard-background);
+	border: 1px solid var(--wwi-blogcard-border-color);
+	border-radius: var(--wwi-blogcard-border-radius);
+	background: var(--wwi-blogcard-background);
 	overflow: hidden;
 	transition: box-shadow 0.2s ease;
 
 	&:hover {
-		box-shadow: var(--wp-blogcard-hover-shadow);
+		box-shadow: var(--wwi-blogcard-hover-shadow);
 	}
 
 	a {
@@ -50,7 +50,7 @@
 	&__title {
 		font-size: 1.1em;
 		font-weight: 600;
-		color: var(--wp-blogcard-text-color);
+		color: var(--wwi-blogcard-text-color);
 		margin: 0 0 12px;
 		line-height: 1.4;
 
@@ -91,8 +91,8 @@
 
 		// Desktop: square image on the right
 		@media (min-width: 600px) {
-			width: var(--wp-blogcard-image-size);
-			height: var(--wp-blogcard-image-size);
+			width: var(--wwi-blogcard-image-size);
+			height: var(--wwi-blogcard-image-size);
 		}
 
 		// Mobile: full width, maintain aspect ratio
@@ -111,7 +111,7 @@
 
 	&__description {
 		font-size: 0.9em;
-		color: var(--wp-blogcard-description-color);
+		color: var(--wwi-blogcard-description-color);
 		margin: 0 0 12px;
 		line-height: 1.5;
 
@@ -137,7 +137,7 @@
 
 	&__site-name {
 		font-size: 0.8em;
-		color: var(--wp-blogcard-meta-color);
+		color: var(--wwi-blogcard-meta-color);
 		white-space: nowrap;
 		overflow: hidden;
 		text-overflow: ellipsis;
@@ -145,24 +145,24 @@
 }
 
 // Wide alignment
-.wp-block-wp-blogcard-blogcard.alignwide {
+.wp-block-wwi-blogcard-blogcard.alignwide {
 
-	.wp-blogcard {
-		--wp-blogcard-image-size: 150px;
+	.wwi-blogcard {
+		--wwi-blogcard-image-size: 150px;
 	}
 }
 
 // Full alignment
-.wp-block-wp-blogcard-blogcard.alignfull {
+.wp-block-wwi-blogcard-blogcard.alignfull {
 
-	.wp-blogcard {
-		--wp-blogcard-image-size: 180px;
+	.wwi-blogcard {
+		--wwi-blogcard-image-size: 180px;
 		border-radius: 0;
 	}
 }
 
 // Accessibility: focus state
-.wp-blogcard a:focus {
+.wwi-blogcard a:focus {
 	outline: 2px solid #007cba;
 	outline-offset: 2px;
 }
@@ -170,7 +170,7 @@
 // Print styles
 @media print {
 
-	.wp-blogcard {
+	.wwi-blogcard {
 		border: 1px solid #000;
 		page-break-inside: avoid;
 

@@ -22,31 +22,31 @@ export default function save( { attributes } ) {
 
 	return (
 		<div { ...blockProps }>
-			<div className="wp-blogcard">
+			<div className="wwi-blogcard">
 				<a href={ url } target="_blank" rel="noopener noreferrer">
-					<div className="wp-blogcard__title">{ title }</div>
-					<div className="wp-blogcard__body">
-						<div className="wp-blogcard__content">
+					<div className="wwi-blogcard__title">{ title }</div>
+					<div className="wwi-blogcard__body">
+						<div className="wwi-blogcard__content">
 							{ description && (
-								<div className="wp-blogcard__description">
+								<div className="wwi-blogcard__description">
 									{ description }
 								</div>
 							) }
-							<div className="wp-blogcard__meta">
+							<div className="wwi-blogcard__meta">
 								{ favicon && (
 									<img
-										className="wp-blogcard__favicon"
+										className="wwi-blogcard__favicon"
 										src={ favicon }
 										alt=""
 									/>
 								) }
-								<span className="wp-blogcard__site-name">
+								<span className="wwi-blogcard__site-name">
 									{ siteName }
 								</span>
 							</div>
 						</div>
 						{ image && (
-							<div className="wp-blogcard__image">
+							<div className="wwi-blogcard__image">
 								<img
 									src={ image }
 									alt={ title }
