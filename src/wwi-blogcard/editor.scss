@@ -3,7 +3,7 @@
  */
 
 // Input wrapper in placeholder
-.wp-blogcard-editor__input-wrapper {
+.wwi-blogcard-editor__input-wrapper {
 	display: flex;
 	gap: 12px;
 	align-items: flex-end;
@@ -22,7 +22,7 @@
 }
 
 // Actions below preview
-.wp-blogcard-editor__actions {
+.wwi-blogcard-editor__actions {
 	display: flex;
 	gap: 8px;
 	margin-top: 12px;
@@ -30,7 +30,7 @@
 }
 
 // Block styling
-.wp-block-wp-blogcard-blogcard {
+.wp-block-wwi-blogcard-blogcard {
 
 	// Error notice styling
 	.components-notice {
@@ -53,7 +53,7 @@
 }
 
 // Preview in editor - disable link clicks
-.wp-blogcard {
+.wwi-blogcard {
 
 	a {
 		cursor: default;
