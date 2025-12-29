@@ -1,0 +1,30 @@
+# Directories
+.git
+.github
+.wordpress-org
+node_modules
+vendor
+tests
+e2e
+docs
+src
+
+# Files
+.distignore
+.editorconfig
+.eslintignore
+.eslintrc
+.gitignore
+.tagpr
+composer.json
+composer.lock
+package.json
+package-lock.json
+phpcs.xml
+phpstan.neon
+phpunit.xml
+playwright.config.ts
+Makefile
+AGENTS.md
+*.log
+*.zip

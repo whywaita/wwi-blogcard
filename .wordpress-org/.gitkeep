@@ -1,0 +1,16 @@
+# WordPress.org Plugin Assets
+
+Place the following files here for the WordPress.org plugin directory:
+
+## Required assets (recommended sizes)
+
+- banner-772x250.png   - Plugin banner (standard)
+- banner-1544x500.png  - Plugin banner (retina)
+- icon-128x128.png     - Plugin icon (standard)
+- icon-256x256.png     - Plugin icon (retina)
+
+## Optional
+
+- screenshot-1.png     - Screenshots referenced in readme.txt
+- screenshot-2.png
+- ...

@@ -1,0 +1,32 @@
+{
+	"name": "wp-blogcard",
+	"version": "1.0.0",
+	"description": "A WordPress block plugin that generates beautiful blog cards from URLs using OGP information.",
+	"author": "whywaita",
+	"license": "GPL-2.0-or-later",
+	"main": "build/index.js",
+	"scripts": {
+		"build": "wp-scripts build",
+		"start": "wp-scripts start",
+		"lint:js": "wp-scripts lint-js",
+		"lint:css": "wp-scripts lint-style",
+		"lint:pkg-json": "wp-scripts lint-pkg-json",
+		"format": "wp-scripts format",
+		"packages-update": "wp-scripts packages-update",
+		"test:e2e": "playwright test",
+		"test:e2e:ui": "playwright test --ui"
+	},
+	"devDependencies": {
+		"@playwright/test": "^1.40.0",
+		"@wordpress/scripts": "^28.0.0"
+	},
+	"dependencies": {
+		"@wordpress/block-editor": "^14.0.0",
+		"@wordpress/blocks": "^13.0.0",
+		"@wordpress/components": "^28.0.0",
+		"@wordpress/data": "^10.0.0",
+		"@wordpress/element": "^6.0.0",
+		"@wordpress/i18n": "^5.0.0",
+		"@wordpress/icons": "^10.0.0"
+	}
+}
