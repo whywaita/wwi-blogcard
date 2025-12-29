@@ -85,7 +85,8 @@ prepare-plugin-dir: build
 	rm -rf plugin-check-dir
 	mkdir -p plugin-check-dir/$(PLUGIN_NAME)/languages
 	cp wwi-blogcard.php readme.txt plugin-check-dir/$(PLUGIN_NAME)/
-	cp -r includes/ build/ plugin-check-dir/$(PLUGIN_NAME)/
+	cp -r includes plugin-check-dir/$(PLUGIN_NAME)/
+	cp -r build plugin-check-dir/$(PLUGIN_NAME)/
 	find languages/ -type f ! -name ".*" -exec cp {} plugin-check-dir/$(PLUGIN_NAME)/languages/ \; 2>/dev/null || true
 
 # Package
