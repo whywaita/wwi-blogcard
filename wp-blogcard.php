@@ -55,12 +55,3 @@ function wp_blogcard_register_block() {
 }
 add_action( 'init', 'wp_blogcard_register_block' );
 
-/**
- * Load plugin text domain for translations.
- *
- * @return void
- */
-function wp_blogcard_load_textdomain() {
-	load_plugin_textdomain( 'wp-blogcard', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' );
-}
-add_action( 'plugins_loaded', 'wp_blogcard_load_textdomain' );
