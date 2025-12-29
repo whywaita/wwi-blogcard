@@ -1,0 +1,54 @@
+name: CI - Plugin Check
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - '*.php'
+      - 'includes/**'
+      - 'src/**'
+      - 'assets/**'
+      - 'package*.json'
+      - 'Makefile'
+      - '.github/workflows/ci-plugin-check.yml'
+  pull_request:
+    branches:
+      - main
+    paths:
+      - '*.php'
+      - 'includes/**'
+      - 'src/**'
+      - 'assets/**'
+      - 'package*.json'
+      - 'Makefile'
+      - '.github/workflows/ci-plugin-check.yml'
+
+jobs:
+  plugin-check:
+    name: Plugin Check
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: '22'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build
+        run: npm run build
+
+      - name: Prepare plugin for check
+        run: make prepare-plugin-dir
+
+      - name: Run Plugin Check
+        uses: WordPress/plugin-check-action@v1
+        with:
+          wp-version: 'latest'
+          build-dir: plugin-check-dir/wwi-blogcard
