@@ -72,7 +72,7 @@ test.describe( 'Blogcard Block', () => {
 
 		// Verify block is added
 		await expect(
-			editor.locator( '.wp-block-wp-blogcard-blogcard' )
+			editor.locator( '.wp-block-wwi-blogcard-blogcard' )
 		).toBeVisible( { timeout: 10000 } );
 	} );
 
@@ -102,7 +102,7 @@ test.describe( 'Blogcard Block', () => {
 
 		// Wait for block to be added
 		await editor
-			.locator( '.wp-block-wp-blogcard-blogcard' )
+			.locator( '.wp-block-wwi-blogcard-blogcard' )
 			.waitFor( { timeout: 10000 } );
 
 		// Enter URL - try main page first, then iframe
