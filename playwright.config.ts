@@ -20,7 +20,7 @@ export default defineConfig( {
 	webServer: {
 		command: 'npm run wp-env start',
 		url: process.env.WP_BASE_URL || 'http://localhost:9999',
-		reuseExistingServer: ! process.env.CI,
+		reuseExistingServer: true,
 		timeout: 120000,
 	},
 } );
