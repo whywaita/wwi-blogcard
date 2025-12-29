@@ -2,18 +2,22 @@ import { test, expect, type Page, type FrameLocator } from '@playwright/test';
 
 /**
  * Helper function to close the welcome dialog if present.
+ * @param page
  */
 async function closeWelcomeDialog( page: Page ): Promise< void > {
 	const closeButton = page.locator(
 		'button[aria-label="Close"], .components-modal__header button'
 	);
-	if ( await closeButton.isVisible( { timeout: 3000 } ).catch( () => false ) ) {
+	if (
+		await closeButton.isVisible( { timeout: 3000 } ).catch( () => false )
+	) {
 		await closeButton.click();
 	}
 }
 
 /**
  * Helper function to get the editor frame (handles iframe-based editor).
+ * @param page
  */
 async function getEditorFrame( page: Page ): Promise< FrameLocator | Page > {
 	// Wait for iframe to appear
@@ -53,15 +57,18 @@ test.describe( 'Blogcard Block', () => {
 		const editor = await getEditorFrame( page );
 
 		// Wait for editor to be ready - look for the "Add title" placeholder or default block button
-		await editor.locator( 'text="Add title"' ).or(
-			editor.locator( 'text="Type / to choose a block"' )
-		).waitFor( { timeout: 10000 } );
+		await editor
+			.locator( 'text="Add title"' )
+			.or( editor.locator( 'text="Type / to choose a block"' ) )
+			.waitFor( { timeout: 10000 } );
 
 		// Add block using the inserter - button in the main page, not iframe
 		await page.click( 'button[aria-label="Block Inserter"]' );
 		await page.fill( '[placeholder="Search"]', 'Blogcard' );
 		// Click on the Blogcard option in the block list (not the external "Simple Blog Card")
-		await page.click( '[role="listbox"][aria-label="Blocks"] [role="option"]:has-text("Blogcard")' );
+		await page.click(
+			'[role="listbox"][aria-label="Blocks"] [role="option"]:has-text("Blogcard")'
+		);
 
 		// Verify block is added
 		await expect(
@@ -80,29 +87,42 @@ test.describe( 'Blogcard Block', () => {
 		const editor = await getEditorFrame( page );
 
 		// Wait for editor to be ready
-		await editor.locator( 'text="Add title"' ).or(
-			editor.locator( 'text="Type / to choose a block"' )
-		).waitFor( { timeout: 10000 } );
+		await editor
+			.locator( 'text="Add title"' )
+			.or( editor.locator( 'text="Type / to choose a block"' ) )
+			.waitFor( { timeout: 10000 } );
 
 		// Add block using the inserter
 		await page.click( 'button[aria-label="Block Inserter"]' );
 		await page.fill( '[placeholder="Search"]', 'Blogcard' );
 		// Click on the Blogcard option in the block list (not the external "Simple Blog Card")
-		await page.click( '[role="listbox"][aria-label="Blocks"] [role="option"]:has-text("Blogcard")' );
+		await page.click(
+			'[role="listbox"][aria-label="Blocks"] [role="option"]:has-text("Blogcard")'
+		);
 
 		// Wait for block to be added
-		await editor.locator( '.wp-block-wp-blogcard-blogcard' ).waitFor( { timeout: 10000 } );
+		await editor
+			.locator( '.wp-block-wp-blogcard-blogcard' )
+			.waitFor( { timeout: 10000 } );
 
 		// Enter URL - try main page first, then iframe
 		let urlInput = page.locator( 'input[type="url"]' );
-		if ( ! ( await urlInput.isVisible( { timeout: 2000 } ).catch( () => false ) ) ) {
+		if (
+			! ( await urlInput
+				.isVisible( { timeout: 2000 } )
+				.catch( () => false ) )
+		) {
 			urlInput = editor.locator( 'input[type="url"]' );
 		}
 		await urlInput.fill( 'https://example.com' );
 
 		// Click fetch button - try main page first, then iframe
 		let fetchButton = page.locator( 'button:has-text("Fetch")' );
-		if ( ! ( await fetchButton.isVisible( { timeout: 2000 } ).catch( () => false ) ) ) {
+		if (
+			! ( await fetchButton
+				.isVisible( { timeout: 2000 } )
+				.catch( () => false ) )
+		) {
 			fetchButton = editor.locator( 'button:has-text("Fetch")' );
 		}
 		await fetchButton.click();
