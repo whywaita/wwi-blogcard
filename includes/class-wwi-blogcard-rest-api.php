@@ -1,8 +1,8 @@
 <?php
 /**
- * REST API class for WP Blogcard.
+ * REST API class for WWI Blogcard.
  *
- * @package WP_Blogcard
+ * @package WWI_Blogcard
  */
 
 // Exit if accessed directly.
@@ -11,18 +11,18 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * Class WP_Blogcard_REST_API
+ * Class WWI_Blogcard_REST_API
  *
  * Handles REST API endpoints for the plugin.
  */
-class WP_Blogcard_REST_API {
+class WWI_Blogcard_REST_API {
 
 	/**
 	 * REST API namespace.
 	 *
 	 * @var string
 	 */
-	const NAMESPACE = 'wp-blogcard/v1';
+	const NAMESPACE = 'wwi-blogcard/v1';
 
 	/**
 	 * Initialize the REST API.
@@ -112,7 +112,7 @@ class WP_Blogcard_REST_API {
 	public function fetch_ogp( $request ) {
 		$url = $request->get_param( 'url' );
 
-		$result = WP_Blogcard_OGP_Fetcher::fetch( $url );
+		$result = WWI_Blogcard_OGP_Fetcher::fetch( $url );
 
 		if ( is_wp_error( $result ) ) {
 			return new WP_REST_Response(
@@ -144,26 +144,26 @@ class WP_Blogcard_REST_API {
 
 		if ( ! empty( $url ) ) {
 			// Clear cache for specific URL.
-			$deleted = WP_Blogcard_Cache::delete( $url );
+			$deleted = WWI_Blogcard_Cache::delete( $url );
 			return new WP_REST_Response(
 				array(
 					'success' => $deleted,
 					'message' => $deleted
-						? __( 'Cache cleared for the specified URL.', 'wp-blogcard' )
-						: __( 'No cache found for the specified URL.', 'wp-blogcard' ),
+						? __( 'Cache cleared for the specified URL.', 'wwi-blogcard' )
+						: __( 'No cache found for the specified URL.', 'wwi-blogcard' ),
 				),
 				200
 			);
 		}
 
 		// Clear all cache.
-		$count = WP_Blogcard_Cache::clear_all();
+		$count = WWI_Blogcard_Cache::clear_all();
 		return new WP_REST_Response(
 			array(
 				'success' => true,
 				'message' => sprintf(
 					/* translators: %d: number of cache entries cleared */
-					__( 'Cleared %d cache entries.', 'wp-blogcard' ),
+					__( 'Cleared %d cache entries.', 'wwi-blogcard' ),
 					$count
 				),
 				'count'   => $count,

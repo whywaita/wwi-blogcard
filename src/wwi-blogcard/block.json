@@ -1,7 +1,7 @@
 {
 	"$schema": "https://schemas.wp.org/trunk/block.json",
 	"apiVersion": 3,
-	"name": "wp-blogcard/blogcard",
+	"name": "wwi-blogcard/blogcard",
 	"version": "1.0.0",
 	"title": "Blogcard",
 	"category": "embed",
@@ -38,7 +38,7 @@
 			"default": ""
 		}
 	},
-	"textdomain": "wp-blogcard",
+	"textdomain": "wwi-blogcard",
 	"editorScript": "file:./index.js",
 	"editorStyle": "file:./index.css",
 	"style": "file:./style-index.css"

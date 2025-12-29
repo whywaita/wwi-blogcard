@@ -1,8 +1,8 @@
 <?php
 /**
- * Cache class for WP Blogcard.
+ * Cache class for WWI Blogcard.
  *
- * @package WP_Blogcard
+ * @package WWI_Blogcard
  */
 
 // Exit if accessed directly.
@@ -11,11 +11,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * Class WP_Blogcard_Cache
+ * Class WWI_Blogcard_Cache
  *
  * Handles caching of OGP data using WordPress Transients API.
  */
-class WP_Blogcard_Cache {
+class WWI_Blogcard_Cache {
 
 	/**
 	 * Cache expiration time in seconds (24 hours).
@@ -29,7 +29,7 @@ class WP_Blogcard_Cache {
 	 *
 	 * @var string
 	 */
-	const CACHE_PREFIX = 'wp_blogcard_';
+	const CACHE_PREFIX = 'wwi_blogcard_';
 
 	/**
 	 * Generate a cache key for a URL.

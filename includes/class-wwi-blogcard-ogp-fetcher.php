@@ -1,8 +1,8 @@
 <?php
 /**
- * OGP Fetcher class for WP Blogcard.
+ * OGP Fetcher class for WWI Blogcard.
  *
- * @package WP_Blogcard
+ * @package WWI_Blogcard
  */
 
 // Exit if accessed directly.
@@ -11,11 +11,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * Class WP_Blogcard_OGP_Fetcher
+ * Class WWI_Blogcard_OGP_Fetcher
  *
  * Fetches and parses OGP (Open Graph Protocol) data from URLs.
  */
-class WP_Blogcard_OGP_Fetcher {
+class WWI_Blogcard_OGP_Fetcher {
 
 	/**
 	 * Fetch OGP data from a URL.
@@ -26,16 +26,16 @@ class WP_Blogcard_OGP_Fetcher {
 	public static function fetch( $url ) {
 		// Validate URL.
 		if ( ! filter_var( $url, FILTER_VALIDATE_URL ) ) {
-			return new WP_Error( 'invalid_url', __( 'Invalid URL provided.', 'wp-blogcard' ) );
+			return new WP_Error( 'invalid_url', __( 'Invalid URL provided.', 'wwi-blogcard' ) );
 		}
 
 		// Check for SSRF - block private IPs.
 		if ( self::is_private_ip( $url ) ) {
-			return new WP_Error( 'blocked_url', __( 'Access to private IP addresses is not allowed.', 'wp-blogcard' ) );
+			return new WP_Error( 'blocked_url', __( 'Access to private IP addresses is not allowed.', 'wwi-blogcard' ) );
 		}
 
 		// Check cache first.
-		$cached = WP_Blogcard_Cache::get( $url );
+		$cached = WWI_Blogcard_Cache::get( $url );
 		if ( false !== $cached ) {
 			return $cached;
 		}
@@ -45,7 +45,7 @@ class WP_Blogcard_OGP_Fetcher {
 			$url,
 			array(
 				'timeout'    => 10,
-				'user-agent' => 'WP-Blogcard/' . WP_BLOGCARD_VERSION . ' (WordPress Plugin)',
+				'user-agent' => 'WWI-Blogcard/' . WWI_BLOGCARD_VERSION . ' (WordPress Plugin)',
 				'sslverify'  => true,
 			)
 		);
@@ -60,7 +60,7 @@ class WP_Blogcard_OGP_Fetcher {
 				'fetch_failed',
 				sprintf(
 					/* translators: %d: HTTP status code */
-					__( 'Failed to fetch URL. Status code: %d', 'wp-blogcard' ),
+					__( 'Failed to fetch URL. Status code: %d', 'wwi-blogcard' ),
 					$status_code
 				)
 			);
@@ -68,14 +68,14 @@ class WP_Blogcard_OGP_Fetcher {
 
 		$body = wp_remote_retrieve_body( $response );
 		if ( empty( $body ) ) {
-			return new WP_Error( 'empty_response', __( 'Empty response from URL.', 'wp-blogcard' ) );
+			return new WP_Error( 'empty_response', __( 'Empty response from URL.', 'wwi-blogcard' ) );
 		}
 
 		// Parse OGP data.
 		$ogp_data = self::parse_ogp( $body, $url );
 
 		// Cache the result.
-		WP_Blogcard_Cache::set( $url, $ogp_data );
+		WWI_Blogcard_Cache::set( $url, $ogp_data );
 
 		return $ogp_data;
 	}

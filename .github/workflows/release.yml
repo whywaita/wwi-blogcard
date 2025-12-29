@@ -31,8 +31,8 @@ jobs:
       - name: Create plugin ZIP
         run: |
           mkdir -p dist
-          zip -r dist/wp-blogcard.zip \
-            wp-blogcard.php \
+          zip -r dist/wwi-blogcard.zip \
+            wwi-blogcard.php \
             includes/ \
             build/ \
             readme.txt \
@@ -41,7 +41,7 @@ jobs:
       - name: Upload release asset
         uses: softprops/action-gh-release@v2
         with:
-          files: dist/wp-blogcard.zip
+          files: dist/wwi-blogcard.zip
 
 # memo(whywaita): WIP for releases in wordpress site
 #   deploy:
@@ -71,6 +71,6 @@ jobs:
 #         env:
 #           SVN_USERNAME: ${{ secrets.WP_ORG_USERNAME }}
 #           SVN_PASSWORD: ${{ secrets.WP_ORG_PASSWORD }}
-#           SLUG: wp-blogcard
+#           SLUG: wwi-blogcard
 #           BUILD_DIR: .
 #           ASSETS_DIR: .wordpress-org
