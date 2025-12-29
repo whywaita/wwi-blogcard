@@ -1,0 +1,76 @@
+name: Release
+
+on:
+  release:
+    types:
+      - published
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    name: Build Plugin
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build
+        run: npm run build
+
+      - name: Create plugin ZIP
+        run: |
+          mkdir -p dist
+          zip -r dist/wp-blogcard.zip \
+            wp-blogcard.php \
+            includes/ \
+            build/ \
+            readme.txt \
+            -x "*.git*" -x "*.DS_Store"
+
+      - name: Upload release asset
+        uses: softprops/action-gh-release@v2
+        with:
+          files: dist/wp-blogcard.zip
+
+# memo(whywaita): WIP for releases in wordpress site
+#   deploy:
+#     name: Deploy to WordPress.org
+#     runs-on: ubuntu-latest
+#     needs: build
+#     # Only deploy on non-prerelease
+#     if: "!github.event.release.prerelease"
+#     steps:
+#       - name: Checkout
+#         uses: actions/checkout@v4
+#
+#       - name: Setup Node.js
+#         uses: actions/setup-node@v4
+#         with:
+#           node-version: '22'
+#           cache: 'npm'
+#
+#       - name: Install dependencies
+#         run: npm ci
+#
+#       - name: Build
+#         run: npm run build
+#
+#       - name: Deploy to WordPress.org
+#         uses: 10up/action-wordpress-plugin-deploy@stable
+#         env:
+#           SVN_USERNAME: ${{ secrets.WP_ORG_USERNAME }}
+#           SVN_PASSWORD: ${{ secrets.WP_ORG_PASSWORD }}
+#           SLUG: wp-blogcard
+#           BUILD_DIR: .
+#           ASSETS_DIR: .wordpress-org
