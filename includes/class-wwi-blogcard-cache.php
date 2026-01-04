@@ -82,6 +82,25 @@ class WWI_Blogcard_Cache {
 	}
 
 	/**
+	 * Get the count of cached entries.
+	 *
+	 * @return int Number of cached entries.
+	 */
+	public static function get_count() {
+		global $wpdb;
+
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching
+		$count = $wpdb->get_var(
+			$wpdb->prepare(
+				"SELECT COUNT(*) FROM {$wpdb->options} WHERE option_name LIKE %s",
+				'_transient_' . self::CACHE_PREFIX . '%'
+			)
+		);
+
+		return (int) $count;
+	}
+
+	/**
 	 * Clear all plugin cache.
 	 *
 	 * @return int Number of deleted cache entries.

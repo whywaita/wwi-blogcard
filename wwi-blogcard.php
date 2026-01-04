@@ -32,6 +32,7 @@ define( 'WWI_BLOGCARD_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
 require_once WWI_BLOGCARD_PLUGIN_DIR . 'includes/class-wwi-blogcard-cache.php';
 require_once WWI_BLOGCARD_PLUGIN_DIR . 'includes/class-wwi-blogcard-ogp-fetcher.php';
 require_once WWI_BLOGCARD_PLUGIN_DIR . 'includes/class-wwi-blogcard-rest-api.php';
+require_once WWI_BLOGCARD_PLUGIN_DIR . 'includes/class-wwi-blogcard-admin.php';
 
 /**
  * Initialize the plugin.
@@ -42,6 +43,12 @@ function wwi_blogcard_init() {
 	// Initialize REST API.
 	$rest_api = new WWI_Blogcard_REST_API();
 	$rest_api->init();
+
+	// Initialize admin page.
+	if ( is_admin() ) {
+		$admin = new WWI_Blogcard_Admin();
+		$admin->init();
+	}
 }
 add_action( 'init', 'wwi_blogcard_init' );
 

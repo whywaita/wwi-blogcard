@@ -139,3 +139,53 @@ msgstr "取得"
 #: src/wwi-blogcard/edit.js
 msgid "Change URL"
 msgstr "URLを変更"
+
+#: includes/class-wwi-blogcard-admin.php
+msgid "WWI Blogcard Settings"
+msgstr "WWI ブログカード 設定"
+
+#: includes/class-wwi-blogcard-admin.php
+msgid "Security check failed. Please try again."
+msgstr "セキュリティチェックに失敗しました。もう一度お試しください。"
+
+#: includes/class-wwi-blogcard-admin.php
+msgid "You do not have permission to perform this action."
+msgstr "この操作を実行する権限がありません。"
+
+#. translators: %d: number of cache entries cleared
+#: includes/class-wwi-blogcard-admin.php
+#, php-format
+msgid "Cache cleared successfully. %d entry was deleted."
+msgid_plural "Cache cleared successfully. %d entries were deleted."
+msgstr[0] "キャッシュを正常にクリアしました。%d件のエントリを削除しました。"
+
+#: includes/class-wwi-blogcard-admin.php
+msgid "Cache Management"
+msgstr "キャッシュ管理"
+
+#. translators: %d: number of cached entries
+#: includes/class-wwi-blogcard-admin.php
+#, php-format
+msgid "Currently %d URL is cached."
+msgid_plural "Currently %d URLs are cached."
+msgstr[0] "現在 %d 件のURLがキャッシュされています。"
+
+#: includes/class-wwi-blogcard-admin.php
+msgid "Cache is automatically cleared after 24 hours. Use the button below to manually clear all cached OGP data."
+msgstr "キャッシュは24時間後に自動的にクリアされます。以下のボタンを使用して、キャッシュされたすべてのOGPデータを手動でクリアできます。"
+
+#: includes/class-wwi-blogcard-admin.php
+msgid "Clear All Cache"
+msgstr "すべてのキャッシュをクリア"
+
+#: includes/class-wwi-blogcard-admin.php
+msgid "About WWI Blogcard"
+msgstr "WWI ブログカードについて"
+
+#: includes/class-wwi-blogcard-admin.php
+msgid "WWI Blogcard is a WordPress block plugin that generates beautiful blog cards from URLs using OGP (Open Graph Protocol) information."
+msgstr "WWI ブログカードは、OGP（Open Graph Protocol）情報を使用してURLから美しいブログカードを生成するWordPressブロックプラグインです。"
+
+#: includes/class-wwi-blogcard-admin.php
+msgid "Version:"
+msgstr "バージョン:"
