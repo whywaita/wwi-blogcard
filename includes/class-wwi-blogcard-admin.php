@@ -174,7 +174,22 @@ class WWI_Blogcard_Admin {
 
 		$cache_count = WWI_Blogcard_Cache::get_count();
 		?>
-		<div class="wrap">
+		<style>
+			.wwi-blogcard-admin .card {
+				max-width: 100%;
+			}
+			.wwi-blogcard-admin .widefat .column-url {
+				width: 45%;
+				word-break: break-all;
+			}
+			.wwi-blogcard-admin .widefat .column-title {
+				width: 45%;
+			}
+			.wwi-blogcard-admin .widefat .column-action {
+				width: 10%;
+			}
+		</style>
+		<div class="wrap wwi-blogcard-admin">
 			<h1><?php echo esc_html( get_admin_page_title() ); ?></h1>
 
 			<?php settings_errors( 'wwi_blogcard_messages' ); ?>
@@ -216,9 +231,9 @@ class WWI_Blogcard_Admin {
 					<table class="widefat striped">
 						<thead>
 							<tr>
-								<th><?php esc_html_e( 'URL', 'wwi-blogcard' ); ?></th>
-								<th><?php esc_html_e( 'Title', 'wwi-blogcard' ); ?></th>
-								<th><?php esc_html_e( 'Action', 'wwi-blogcard' ); ?></th>
+								<th class="column-url"><?php esc_html_e( 'URL', 'wwi-blogcard' ); ?></th>
+								<th class="column-title"><?php esc_html_e( 'Title', 'wwi-blogcard' ); ?></th>
+								<th class="column-action"><?php esc_html_e( 'Action', 'wwi-blogcard' ); ?></th>
 							</tr>
 						</thead>
 						<tbody>
