@@ -177,3 +177,27 @@ msgstr "キャッシュは24時間後に自動的にクリアされます。以�
 #: includes/class-wwi-blogcard-admin.php
 msgid "Clear All Cache"
 msgstr "すべてのキャッシュをクリア"
+
+#: includes/class-wwi-blogcard-admin.php
+msgid "Cache entry deleted successfully."
+msgstr "キャッシュエントリを削除しました。"
+
+#: includes/class-wwi-blogcard-admin.php
+msgid "Cache entry not found."
+msgstr "キャッシュエントリが見つかりませんでした。"
+
+#: includes/class-wwi-blogcard-admin.php
+msgid "Cached URLs"
+msgstr "キャッシュされたURL"
+
+#: includes/class-wwi-blogcard-admin.php
+msgid "Title"
+msgstr "タイトル"
+
+#: includes/class-wwi-blogcard-admin.php
+msgid "Action"
+msgstr "操作"
+
+#: includes/class-wwi-blogcard-admin.php
+msgid "Delete"
+msgstr "削除"

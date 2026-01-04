@@ -82,6 +82,35 @@ class WWI_Blogcard_Cache {
 	}
 
 	/**
+	 * Get all cached entries.
+	 *
+	 * @return array Array of cached OGP data entries.
+	 */
+	public static function get_all() {
+		global $wpdb;
+
+		$entries = array();
+
+		// Get all transients with our prefix.
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching
+		$transients = $wpdb->get_results(
+			$wpdb->prepare(
+				"SELECT option_name, option_value FROM {$wpdb->options} WHERE option_name LIKE %s",
+				'_transient_' . self::CACHE_PREFIX . '%'
+			)
+		);
+
+		foreach ( $transients as $transient ) {
+			$data = maybe_unserialize( $transient->option_value );
+			if ( is_array( $data ) && ! empty( $data['url'] ) ) {
+				$entries[] = $data;
+			}
+		}
+
+		return $entries;
+	}
+
+	/**
 	 * Get the count of cached entries.
 	 *
 	 * @return int Number of cached entries.
