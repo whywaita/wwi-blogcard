@@ -118,18 +118,14 @@ class WWI_Blogcard_Admin {
 				<h2><?php esc_html_e( 'Cache Management', 'wwi-blogcard' ); ?></h2>
 				<p>
 					<?php
-					printf(
-						/* translators: %d: number of cached entries */
-						esc_html(
-							_n(
-								'Currently %d URL is cached.',
-								'Currently %d URLs are cached.',
-								$cache_count,
-								'wwi-blogcard'
-							)
-						),
-						esc_html( $cache_count )
+					/* translators: %d: number of cached entries */
+					$cache_message = _n(
+						'Currently %d URL is cached.',
+						'Currently %d URLs are cached.',
+						$cache_count,
+						'wwi-blogcard'
 					);
+					printf( esc_html( $cache_message ), (int) $cache_count );
 					?>
 				</p>
 				<p class="description">
@@ -143,7 +139,7 @@ class WWI_Blogcard_Admin {
 							name="wwi_blogcard_clear_cache"
 							class="button button-secondary"
 							value="<?php esc_attr_e( 'Clear All Cache', 'wwi-blogcard' ); ?>"
-							<?php echo $cache_count === 0 ? 'disabled' : ''; ?>
+							<?php echo 0 === $cache_count ? 'disabled' : ''; ?>
 						/>
 					</p>
 				</form>
