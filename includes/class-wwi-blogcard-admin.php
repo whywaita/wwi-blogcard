@@ -178,6 +178,7 @@ class WWI_Blogcard_Admin {
 			.wwi-blogcard-admin .card {
 				max-width: 100%;
 				margin-top: 20px;
+				padding: 1em 2em 2em;
 			}
 			.wwi-blogcard-admin .widefat .column-url {
 				width: 45%;
