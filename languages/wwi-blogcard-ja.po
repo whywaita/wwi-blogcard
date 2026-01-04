@@ -177,15 +177,3 @@ msgstr "キャッシュは24時間後に自動的にクリアされます。以�
 #: includes/class-wwi-blogcard-admin.php
 msgid "Clear All Cache"
 msgstr "すべてのキャッシュをクリア"
-
-#: includes/class-wwi-blogcard-admin.php
-msgid "About WWI Blogcard"
-msgstr "WWI ブログカードについて"
-
-#: includes/class-wwi-blogcard-admin.php
-msgid "WWI Blogcard is a WordPress block plugin that generates beautiful blog cards from URLs using OGP (Open Graph Protocol) information."
-msgstr "WWI ブログカードは、OGP（Open Graph Protocol）情報を使用してURLから美しいブログカードを生成するWordPressブロックプラグインです。"
-
-#: includes/class-wwi-blogcard-admin.php
-msgid "Version:"
-msgstr "バージョン:"

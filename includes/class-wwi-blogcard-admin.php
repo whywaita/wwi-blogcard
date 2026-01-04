@@ -144,16 +144,6 @@ class WWI_Blogcard_Admin {
 					</p>
 				</form>
 			</div>
-
-			<div class="card">
-				<h2><?php esc_html_e( 'About WWI Blogcard', 'wwi-blogcard' ); ?></h2>
-				<p>
-					<?php esc_html_e( 'WWI Blogcard is a WordPress block plugin that generates beautiful blog cards from URLs using OGP (Open Graph Protocol) information.', 'wwi-blogcard' ); ?>
-				</p>
-				<p>
-					<strong><?php esc_html_e( 'Version:', 'wwi-blogcard' ); ?></strong> <?php echo esc_html( WWI_BLOGCARD_VERSION ); ?>
-				</p>
-			</div>
 		</div>
 		<?php
 	}
