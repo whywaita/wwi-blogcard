@@ -1,5 +1,8 @@
 # Changelog
 
+## [v1.0.1](https://github.com/whywaita/wwi-blogcard/compare/v1.0.0...v1.0.1) - 2026-01-04
+- Add admin settings page with cache management by @whywaita in https://github.com/whywaita/wwi-blogcard/pull/16
+
 ## [v1.0.0](https://github.com/whywaita/wwi-blogcard/commits/v1.0.0) - 2025-12-29
 - Develop by @whywaita in https://github.com/whywaita/wwi-blogcard/pull/1
 - Bump actions/setup-node from 4 to 6 by @dependabot[bot] in https://github.com/whywaita/wwi-blogcard/pull/2
