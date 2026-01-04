@@ -26,6 +26,7 @@ class WWI_Blogcard_Admin {
 		add_action( 'admin_menu', array( $this, 'add_admin_menu' ) );
 		add_action( 'admin_init', array( $this, 'handle_cache_clear' ) );
 		add_action( 'admin_init', array( $this, 'handle_single_cache_delete' ) );
+		add_action( 'admin_notices', array( $this, 'display_admin_notices' ) );
 	}
 
 	/**
@@ -79,22 +80,17 @@ class WWI_Blogcard_Admin {
 		// Clear the cache.
 		$count = WWI_Blogcard_Cache::clear_all();
 
-		// Add success message.
-		add_settings_error(
-			'wwi_blogcard_messages',
-			'wwi_blogcard_cache_cleared',
-			sprintf(
-				/* translators: %d: number of cache entries cleared */
-				_n(
-					'Cache cleared successfully. %d entry was deleted.',
-					'Cache cleared successfully. %d entries were deleted.',
-					$count,
-					'wwi-blogcard'
+		// Redirect with success message.
+		wp_safe_redirect(
+			add_query_arg(
+				array(
+					'page'    => 'wwi-blogcard-settings',
+					'cleared' => $count,
 				),
-				$count
-			),
-			'success'
+				admin_url( 'options-general.php' )
+			)
 		);
+		exit;
 	}
 
 	/**
@@ -144,20 +140,72 @@ class WWI_Blogcard_Admin {
 		// Delete the cache entry.
 		$deleted = WWI_Blogcard_Cache::delete( $url );
 
-		if ( $deleted ) {
+		// Redirect with result message.
+		wp_safe_redirect(
+			add_query_arg(
+				array(
+					'page'    => 'wwi-blogcard-settings',
+					'deleted' => $deleted ? '1' : '0',
+				),
+				admin_url( 'options-general.php' )
+			)
+		);
+		exit;
+	}
+
+	/**
+	 * Display admin notices based on query parameters.
+	 *
+	 * @return void
+	 */
+	public function display_admin_notices() {
+		// Only show on our settings page.
+		// phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		if ( ! isset( $_GET['page'] ) || 'wwi-blogcard-settings' !== $_GET['page'] ) {
+			return;
+		}
+
+		// Check for cleared cache message.
+		// phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		if ( isset( $_GET['cleared'] ) ) {
+			// phpcs:ignore WordPress.Security.NonceVerification.Recommended
+			$count = (int) $_GET['cleared'];
 			add_settings_error(
 				'wwi_blogcard_messages',
-				'wwi_blogcard_single_cache_deleted',
-				__( 'Cache entry deleted successfully.', 'wwi-blogcard' ),
+				'wwi_blogcard_cache_cleared',
+				sprintf(
+					/* translators: %d: number of cache entries cleared */
+					_n(
+						'Cache cleared successfully. %d entry was deleted.',
+						'Cache cleared successfully. %d entries were deleted.',
+						$count,
+						'wwi-blogcard'
+					),
+					$count
+				),
 				'success'
 			);
-		} else {
-			add_settings_error(
-				'wwi_blogcard_messages',
-				'wwi_blogcard_single_cache_not_found',
-				__( 'Cache entry not found.', 'wwi-blogcard' ),
-				'error'
-			);
+		}
+
+		// Check for single cache deleted message.
+		// phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		if ( isset( $_GET['deleted'] ) ) {
+			// phpcs:ignore WordPress.Security.NonceVerification.Recommended
+			if ( '1' === $_GET['deleted'] ) {
+				add_settings_error(
+					'wwi_blogcard_messages',
+					'wwi_blogcard_single_cache_deleted',
+					__( 'Cache entry deleted successfully.', 'wwi-blogcard' ),
+					'success'
+				);
+			} else {
+				add_settings_error(
+					'wwi_blogcard_messages',
+					'wwi_blogcard_single_cache_not_found',
+					__( 'Cache entry not found.', 'wwi-blogcard' ),
+					'error'
+				);
+			}
 		}
 	}
 
