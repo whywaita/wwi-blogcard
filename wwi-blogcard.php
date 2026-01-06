@@ -3,7 +3,7 @@
  * Plugin Name:       WWI Blogcard
  * Plugin URI:        https://github.com/whywaita/wwi-blogcard
  * Description:       A WordPress block plugin that generates beautiful blog cards from URLs using OGP information.
- * Version:           1.0.2
+ * Version:           1.0.3
  * Requires at least: 6.0
  * Requires PHP:      7.4
  * Author:            whywaita
