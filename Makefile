@@ -85,7 +85,7 @@ dev-destroy:
 .PHONY: composer-install
 
 composer-install:
-	docker compose run --rm php composer install
+	composer install
 
 # ==============================================================================
 # Linting
@@ -129,7 +129,7 @@ lint-fix:
 
 test: composer-install
 	@echo "Running PHP tests..."
-	docker compose run --rm php composer test
+	composer test
 	@echo "Tests completed!"
 
 test-e2e:
@@ -232,7 +232,7 @@ review-check:
 	$(MAKE) lint-css
 	@echo ""
 	@echo "[3/5] Running PHP CodeSniffer..."
-	$(MAKE) lint-php-local
+	$(MAKE) lint-php
 	@echo ""
 	@echo "[4/5] Running E2E tests..."
 	$(MAKE) test-e2e
