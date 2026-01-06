@@ -98,6 +98,15 @@ make clean
 - Use CSS Custom Properties for theming
 - Support dark mode with `prefers-color-scheme`
 
+## Git Conventions
+
+All Git-related communications must be in **English**:
+
+- Commit messages
+- Branch names
+- Pull Request titles and descriptions
+- Code review comments
+
 ## Security Considerations
 
 - SSRF protection: Block private IP addresses in OGP fetcher
