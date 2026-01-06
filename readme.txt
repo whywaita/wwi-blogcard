@@ -36,6 +36,23 @@ WWI Blogcard is a Gutenberg block plugin that creates visually appealing blog ca
 2. Activate the plugin through the 'Plugins' screen in WordPress.
 3. Use the "Blogcard" block in the Gutenberg editor.
 
+== Source Code ==
+
+The source code for this plugin, including uncompiled JavaScript and CSS files, is available on GitHub:
+
+https://github.com/whywaita/wwi-blogcard
+
+= Building from Source =
+
+To build the plugin from source, you need Node.js and npm installed. Then run the following commands:
+
+1. Clone the repository: `git clone https://github.com/whywaita/wwi-blogcard.git`
+2. Navigate to the plugin directory: `cd wwi-blogcard`
+3. Install dependencies: `npm install`
+4. Build the plugin: `npm run build`
+
+The build process uses `@wordpress/scripts` to compile and minify the JavaScript and CSS files from the `src/` directory to the `build/` directory.
+
 == Frequently Asked Questions ==
 
 = What is OGP? =

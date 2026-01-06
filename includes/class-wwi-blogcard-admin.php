@@ -27,6 +27,7 @@ class WWI_Blogcard_Admin {
 		add_action( 'admin_init', array( $this, 'handle_cache_clear' ) );
 		add_action( 'admin_init', array( $this, 'handle_single_cache_delete' ) );
 		add_action( 'admin_notices', array( $this, 'display_admin_notices' ) );
+		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_admin_styles' ) );
 	}
 
 	/**
@@ -42,6 +43,39 @@ class WWI_Blogcard_Admin {
 			'wwi-blogcard-settings',
 			array( $this, 'render_settings_page' )
 		);
+	}
+
+	/**
+	 * Enqueue admin styles for the settings page.
+	 *
+	 * @param string $hook_suffix The current admin page hook suffix.
+	 * @return void
+	 */
+	public function enqueue_admin_styles( $hook_suffix ) {
+		// Only load on our settings page.
+		if ( 'settings_page_wwi-blogcard-settings' !== $hook_suffix ) {
+			return;
+		}
+
+		$inline_css = '
+			.wwi-blogcard-admin .card {
+				max-width: 100%;
+				margin-top: 20px;
+				padding: 1em 2em 2em;
+			}
+			.wwi-blogcard-admin .widefat .column-url {
+				width: 45%;
+				word-break: break-all;
+			}
+			.wwi-blogcard-admin .widefat .column-title {
+				width: 45%;
+			}
+			.wwi-blogcard-admin .widefat .column-action {
+				width: 10%;
+			}
+		';
+
+		wp_add_inline_style( 'common', $inline_css );
 	}
 
 	/**
@@ -222,23 +256,6 @@ class WWI_Blogcard_Admin {
 
 		$cache_count = WWI_Blogcard_Cache::get_count();
 		?>
-		<style>
-			.wwi-blogcard-admin .card {
-				max-width: 100%;
-				margin-top: 20px;
-				padding: 1em 2em 2em;
-			}
-			.wwi-blogcard-admin .widefat .column-url {
-				width: 45%;
-				word-break: break-all;
-			}
-			.wwi-blogcard-admin .widefat .column-title {
-				width: 45%;
-			}
-			.wwi-blogcard-admin .widefat .column-action {
-				width: 10%;
-			}
-		</style>
 		<div class="wrap wwi-blogcard-admin">
 			<h1><?php echo esc_html( get_admin_page_title() ); ?></h1>
 

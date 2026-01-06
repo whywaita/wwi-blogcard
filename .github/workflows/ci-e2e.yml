@@ -13,6 +13,7 @@ on:
       - 'playwright.config.ts'
       - 'package*.json'
       - '.wp-env.json'
+      - 'Makefile'
       - '.github/workflows/ci-e2e.yml'
   pull_request:
     branches:
@@ -26,6 +27,7 @@ on:
       - 'playwright.config.ts'
       - 'package*.json'
       - '.wp-env.json'
+      - 'Makefile'
       - '.github/workflows/ci-e2e.yml'
 
 jobs:
@@ -56,13 +58,13 @@ jobs:
         run: npx playwright install chromium --with-deps
 
       - name: Build
-        run: npm run build
+        run: make build
 
       - name: Start WordPress environment
         run: npm run wp-env start
 
       - name: Run E2E tests
-        run: npm run test:e2e
+        run: make test-e2e
 
       - name: Upload test results
         uses: actions/upload-artifact@v6

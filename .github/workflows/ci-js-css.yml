@@ -8,6 +8,7 @@ on:
       - 'src/**'
       - 'assets/**'
       - 'package*.json'
+      - 'Makefile'
       - '.github/workflows/ci-js-css.yml'
   pull_request:
     branches:
@@ -16,6 +17,7 @@ on:
       - 'src/**'
       - 'assets/**'
       - 'package*.json'
+      - 'Makefile'
       - '.github/workflows/ci-js-css.yml'
 
 jobs:
@@ -36,10 +38,10 @@ jobs:
         run: npm ci
 
       - name: Lint JavaScript
-        run: npm run lint:js
+        run: make lint-js
 
       - name: Lint CSS
-        run: npm run lint:css
+        run: make lint-css
 
       - name: Build
-        run: npm run build
+        run: make build

@@ -10,6 +10,7 @@ on:
       - 'tests/**'
       - 'composer.*'
       - 'phpcs.xml'
+      - 'Makefile'
       - '.github/workflows/ci-php.yml'
   pull_request:
     branches:
@@ -20,6 +21,7 @@ on:
       - 'tests/**'
       - 'composer.*'
       - 'phpcs.xml'
+      - 'Makefile'
       - '.github/workflows/ci-php.yml'
 
 jobs:
@@ -47,4 +49,4 @@ jobs:
         run: composer install --prefer-dist --no-progress
 
       - name: Run PHPCS
-        run: composer phpcs
+        run: make lint-php
