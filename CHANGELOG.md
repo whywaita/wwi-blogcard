@@ -1,5 +1,10 @@
 # Changelog
 
+## [v1.0.3](https://github.com/whywaita/wwi-blogcard/compare/v1.0.2...v1.0.3) - 2026-01-06
+- fix: address WordPress plugin review feedback by @whywaita in https://github.com/whywaita/wwi-blogcard/pull/21
+- Bump actions/create-github-app-token from 1 to 2 by @dependabot[bot] in https://github.com/whywaita/wwi-blogcard/pull/20
+- ci: add review-check workflow for pull requests by @whywaita in https://github.com/whywaita/wwi-blogcard/pull/23
+
 ## [v1.0.2](https://github.com/whywaita/wwi-blogcard/compare/v1.0.1...v1.0.2) - 2026-01-04
 - Debug release workflow not triggering by @whywaita in https://github.com/whywaita/wwi-blogcard/pull/18
 
