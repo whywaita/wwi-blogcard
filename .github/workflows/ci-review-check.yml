@@ -48,6 +48,12 @@ jobs:
       - name: Install Playwright browsers
         run: npx playwright install chromium --with-deps
 
+      - name: Build
+        run: make build
+
+      - name: Start WordPress environment
+        run: npm run wp-env start
+
       - name: Run review check
         run: make review-check
 
