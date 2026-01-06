@@ -10,16 +10,16 @@ on:
       - 'tests/**'
       - 'composer.*'
       - 'phpcs.xml'
+      - 'Makefile'
       - '.github/workflows/ci-php.yml'
   pull_request:
-    branches:
-      - main
     paths:
       - '*.php'
       - 'includes/**'
       - 'tests/**'
       - 'composer.*'
       - 'phpcs.xml'
+      - 'Makefile'
       - '.github/workflows/ci-php.yml'
 
 jobs:
@@ -28,7 +28,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v6
+        uses: actions/checkout@v4
 
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
@@ -37,7 +37,7 @@ jobs:
           tools: composer:v2
 
       - name: Cache Composer dependencies
-        uses: actions/cache@v5
+        uses: actions/cache@v4
         with:
           path: vendor
           key: composer-${{ hashFiles('composer.lock') }}
@@ -47,4 +47,4 @@ jobs:
         run: composer install --prefer-dist --no-progress
 
       - name: Run PHPCS
-        run: composer phpcs
+        run: make lint-php

@@ -13,10 +13,9 @@ on:
       - 'playwright.config.ts'
       - 'package*.json'
       - '.wp-env.json'
+      - 'Makefile'
       - '.github/workflows/ci-e2e.yml'
   pull_request:
-    branches:
-      - main
     paths:
       - '*.php'
       - 'includes/**'
@@ -26,6 +25,7 @@ on:
       - 'playwright.config.ts'
       - 'package*.json'
       - '.wp-env.json'
+      - 'Makefile'
       - '.github/workflows/ci-e2e.yml'
 
 jobs:
@@ -34,10 +34,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v6
+        uses: actions/checkout@v4
 
       - name: Setup Node.js
-        uses: actions/setup-node@v6
+        uses: actions/setup-node@v4
         with:
           node-version: '22'
           cache: 'npm'
@@ -46,7 +46,7 @@ jobs:
         run: npm ci
 
       - name: Cache Playwright browsers
-        uses: actions/cache@v5
+        uses: actions/cache@v4
         with:
           path: ~/.cache/ms-playwright
           key: playwright-${{ hashFiles('package-lock.json') }}
@@ -56,16 +56,16 @@ jobs:
         run: npx playwright install chromium --with-deps
 
       - name: Build
-        run: npm run build
+        run: make build
 
       - name: Start WordPress environment
         run: npm run wp-env start
 
       - name: Run E2E tests
-        run: npm run test:e2e
+        run: make test-e2e
 
       - name: Upload test results
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v4
         if: failure()
         with:
           name: playwright-report

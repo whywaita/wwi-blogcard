@@ -8,14 +8,14 @@ on:
       - 'src/**'
       - 'assets/**'
       - 'package*.json'
+      - 'Makefile'
       - '.github/workflows/ci-js-css.yml'
   pull_request:
-    branches:
-      - main
     paths:
       - 'src/**'
       - 'assets/**'
       - 'package*.json'
+      - 'Makefile'
       - '.github/workflows/ci-js-css.yml'
 
 jobs:
@@ -24,10 +24,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v6
+        uses: actions/checkout@v4
 
       - name: Setup Node.js
-        uses: actions/setup-node@v6
+        uses: actions/setup-node@v4
         with:
           node-version: '22'
           cache: 'npm'
@@ -36,10 +36,10 @@ jobs:
         run: npm ci
 
       - name: Lint JavaScript
-        run: npm run lint:js
+        run: make lint-js
 
       - name: Lint CSS
-        run: npm run lint:css
+        run: make lint-css
 
       - name: Build
-        run: npm run build
+        run: make build
