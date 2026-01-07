@@ -191,6 +191,9 @@ This project uses [tagpr](https://github.com/Songmu/tagpr) for automated release
 2. tagpr creates a release PR with version bump
 3. Merge the PR to create a release
 4. GitHub Actions builds and attaches the plugin ZIP to the release
+5. For non-prerelease versions, the plugin is automatically deployed to WordPress.org SVN
+
+**Note**: WordPress.org deployment requires `WP_ORG_USERNAME` and `WP_ORG_PASSWORD` secrets to be configured in the repository settings.
 
 ## Plugin Distribution
 
