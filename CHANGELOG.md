@@ -1,5 +1,8 @@
 # Changelog
 
+## [v1.0.4](https://github.com/whywaita/wwi-blogcard/compare/v1.0.3...v1.0.4) - 2026-01-07
+- Enable WordPress.org SVN deployment workflow by @Copilot in https://github.com/whywaita/wwi-blogcard/pull/25
+
 ## [v1.0.3](https://github.com/whywaita/wwi-blogcard/compare/v1.0.2...v1.0.3) - 2026-01-06
 - fix: address WordPress plugin review feedback by @whywaita in https://github.com/whywaita/wwi-blogcard/pull/21
 - Bump actions/create-github-app-token from 1 to 2 by @dependabot[bot] in https://github.com/whywaita/wwi-blogcard/pull/20
