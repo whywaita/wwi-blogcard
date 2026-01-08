@@ -41,7 +41,7 @@ awk -v v="${version}" '
 mv "${tmp}" wwi-blogcard.php
 
 # Sync block.json versions.
-for f in src/wwi-blogcard/block.json build/wwi-blogcard/block.json; do
+for f in src/wwi-blogcard/block.json; do
   if [[ -f "${f}" ]]; then
     tmp=$(tmpfile)
     awk -v v="${version}" '
