@@ -1,5 +1,8 @@
 # Changelog
 
+## [v1.0.5](https://github.com/whywaita/wwi-blogcard/compare/v1.0.4...v1.0.5) - 2026-01-08
+- Fix release deploy to honor distignore by @whywaita in https://github.com/whywaita/wwi-blogcard/pull/27
+
 ## [v1.0.4](https://github.com/whywaita/wwi-blogcard/compare/v1.0.3...v1.0.4) - 2026-01-07
 - Enable WordPress.org SVN deployment workflow by @Copilot in https://github.com/whywaita/wwi-blogcard/pull/25
 
