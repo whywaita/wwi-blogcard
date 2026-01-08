@@ -1,5 +1,9 @@
 # Changelog
 
+## [v1.0.7](https://github.com/whywaita/wwi-blogcard/compare/v1.0.6...v1.0.7) - 2026-01-08
+- Add command for tagpr by @whywaita in https://github.com/whywaita/wwi-blogcard/pull/31
+- Fix tagpr version targets by @whywaita in https://github.com/whywaita/wwi-blogcard/pull/32
+
 ## [v1.0.6](https://github.com/whywaita/wwi-blogcard/compare/v1.0.5...v1.0.6) - 2026-01-08
 - Add assets to WordPress.org deploy by @whywaita in https://github.com/whywaita/wwi-blogcard/pull/29
 
