@@ -22,7 +22,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 // Plugin constants.
-define( 'WWI_BLOGCARD_VERSION', '1.0.7' );
+define( 'WWI_BLOGCARD_VERSION', '1.0.8' );
 define( 'WWI_BLOGCARD_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
 define( 'WWI_BLOGCARD_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
 
