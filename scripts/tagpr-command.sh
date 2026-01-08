@@ -56,3 +56,56 @@ for f in src/wwi-blogcard/block.json build/wwi-blogcard/block.json; do
     mv "${tmp}" "${f}"
   fi
 done
+
+# Update readme changelog from CHANGELOG.md.
+if [[ -f "CHANGELOG.md" ]]; then
+  tmp_changelog=$(tmpfile)
+  awk '
+    BEGIN { in_changelog=0; printed=0 }
+    /^# Changelog/ { in_changelog=1; next }
+    in_changelog==0 { next }
+    /^## / {
+      if (match($0, /^## \[v?([0-9]+\.[0-9]+\.[0-9]+)\]/, m)) {
+        if (printed) {
+          print ""
+        }
+        print "= " m[1] " ="
+        printed=1
+      }
+      next
+    }
+    /^- / { print "* " substr($0, 3); next }
+    /^[[:space:]]*$/ { next }
+  ' CHANGELOG.md > "${tmp_changelog}"
+
+  tmp=$(tmpfile)
+  awk -v insert_file="${tmp_changelog}" '
+    BEGIN { inserted=0; skipping=0; found_upgrade=0 }
+    /^== Changelog ==/ {
+      print
+      while ((getline line < insert_file) > 0) {
+        print line
+      }
+      close(insert_file)
+      inserted=1
+      skipping=1
+      next
+    }
+    skipping {
+      if ($0 ~ /^== Upgrade Notice ==/) {
+        print
+        found_upgrade=1
+        skipping=0
+      }
+      next
+    }
+    { print }
+    END {
+      if (!inserted || !found_upgrade) {
+        exit 5
+      }
+    }
+  ' readme.txt > "${tmp}"
+  mv "${tmp}" readme.txt
+  rm -f "${tmp_changelog}"
+fi
