@@ -17,5 +17,5 @@ release = true
 # Commit message template
 #tmpl = Release {{.NextVersion}}
 
-# Command to run before version bump
-command = ./scripts/tagpr-command.sh
+# Command to run after version bump
+postVersionCommand = ./scripts/tagpr-command.sh
