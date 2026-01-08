@@ -40,7 +40,7 @@ WWI Blogcard is a Gutenberg block plugin that creates visually appealing blog ca
 
 The source code for this plugin, including uncompiled JavaScript and CSS files, is available on GitHub:
 
-https://github.com/whywaita/wwi-blogcard
+[https://github.com/whywaita/wwi-blogcard](https://github.com/whywaita/wwi-blogcard)
 
 = Building from Source =
 
@@ -74,7 +74,9 @@ No, for security reasons (SSRF protection), the plugin blocks requests to privat
 3. Block settings panel
 
 == Changelog ==
-See: https://github.com/whywaita/wwi-blogcard/blob/main/CHANGELOG.md
+See: [https://github.com/whywaita/wwi-blogcard/blob/main/CHANGELOG.md](https://wordpress.org/plugins/wwi-blogcard/)
+
+
 == Upgrade Notice ==
 
 = 1.0.0 =
