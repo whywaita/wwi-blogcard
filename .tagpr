@@ -6,7 +6,7 @@
 releaseBranch = main
 
 # Version files to update
-versionFile = package.json, wwi-blogcard.php, readme.txt, src/wwi-blogcard/block.json, build/wwi-blogcard/block.json
+versionFile = package.json, wwi-blogcard.php, readme.txt, src/wwi-blogcard/block.json
 
 # Use v prefix for tags (e.g., v1.0.0)
 vPrefix = true
