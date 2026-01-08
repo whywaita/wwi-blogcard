@@ -1,5 +1,8 @@
 # Changelog
 
+## [v1.0.8](https://github.com/whywaita/wwi-blogcard/compare/v1.0.7...v1.0.8) - 2026-01-08
+- Add links for wordpress format by @whywaita in https://github.com/whywaita/wwi-blogcard/pull/34
+
 ## [v1.0.7](https://github.com/whywaita/wwi-blogcard/compare/v1.0.6...v1.0.7) - 2026-01-08
 - Add command for tagpr by @whywaita in https://github.com/whywaita/wwi-blogcard/pull/31
 - Fix tagpr version targets by @whywaita in https://github.com/whywaita/wwi-blogcard/pull/32
