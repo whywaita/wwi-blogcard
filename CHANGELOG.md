@@ -1,5 +1,9 @@
 # Changelog
 
+## [v1.0.9](https://github.com/whywaita/wwi-blogcard/compare/v1.0.8...v1.0.9) - 2026-01-08
+- Fix a version by @whywaita in https://github.com/whywaita/wwi-blogcard/pull/36
+- Fix a timing for command by @whywaita in https://github.com/whywaita/wwi-blogcard/pull/38
+
 ## [v1.0.8](https://github.com/whywaita/wwi-blogcard/compare/v1.0.7...v1.0.8) - 2026-01-08
 - Add links for wordpress format by @whywaita in https://github.com/whywaita/wwi-blogcard/pull/34
 
