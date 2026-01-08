@@ -1,5 +1,8 @@
 # Changelog
 
+## [v1.0.6](https://github.com/whywaita/wwi-blogcard/compare/v1.0.5...v1.0.6) - 2026-01-08
+- Add assets to WordPress.org deploy by @whywaita in https://github.com/whywaita/wwi-blogcard/pull/29
+
 ## [v1.0.5](https://github.com/whywaita/wwi-blogcard/compare/v1.0.4...v1.0.5) - 2026-01-08
 - Fix release deploy to honor distignore by @whywaita in https://github.com/whywaita/wwi-blogcard/pull/27
 
