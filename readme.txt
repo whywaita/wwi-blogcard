@@ -74,8 +74,8 @@ No, for security reasons (SSRF protection), the plugin blocks requests to privat
 3. Block settings panel
 
 == Changelog ==
-See: [https://github.com/whywaita/wwi-blogcard/blob/main/CHANGELOG.md](https://wordpress.org/plugins/wwi-blogcard/)
 
+See: [https://github.com/whywaita/wwi-blogcard/blob/main/CHANGELOG.md](https://github.com/whywaita/wwi-blogcard/blob/main/CHANGELOG.md)
 
 == Upgrade Notice ==
 
