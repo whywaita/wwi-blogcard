@@ -1,6 +1,6 @@
 {
 	"name": "wwi-blogcard",
-	"version": "1.0.8",
+	"version": "1.0.9",
 	"description": "A WordPress block plugin that generates beautiful blog cards from URLs using OGP information.",
 	"author": "whywaita",
 	"license": "GPL-2.0-or-later",
