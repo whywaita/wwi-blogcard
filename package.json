@@ -19,8 +19,8 @@
 	},
 	"devDependencies": {
 		"@playwright/test": "^1.40.0",
-		"@wordpress/env": "^10.0.0",
-		"@wordpress/scripts": "^31.2.0"
+		"@wordpress/env": "^10.38.0",
+		"@wordpress/scripts": "^31.3.0"
 	},
 	"dependencies": {
 		"@wordpress/api-fetch": "^7.0.0",
