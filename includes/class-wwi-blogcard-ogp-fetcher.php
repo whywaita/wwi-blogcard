@@ -139,11 +139,12 @@ class WWI_Blogcard_OGP_Fetcher {
 
 		$doc = new DOMDocument();
 
-		// Ensure proper UTF-8 encoding for DOMDocument.
-		// Add UTF-8 meta tag if not present to handle multibyte characters correctly.
-		if ( stripos( $html, 'charset=' ) === false ) {
-			$html = '<?xml encoding="UTF-8">' . $html;
-		}
+		// Detect charset from HTML and add XML encoding declaration.
+		// DOMDocument::loadHTML() uses an HTML4 parser that does not recognize
+		// HTML5 <meta charset="...">. Explicitly prepending <?xml encoding="...">
+		// ensures the parser uses the correct encoding regardless of HTML version.
+		$charset = self::detect_charset( $html );
+		$html    = '<?xml encoding="' . $charset . '">' . $html;
 		$doc->loadHTML( $html, LIBXML_NOWARNING | LIBXML_NOERROR );
 
 		// Restore error handling.
@@ -249,5 +250,29 @@ class WWI_Blogcard_OGP_Fetcher {
 		$data['favicon']     = esc_url_raw( $data['favicon'] );
 
 		return $data;
+	}
+
+	/**
+	 * Detect charset from HTML content.
+	 *
+	 * Checks HTML5 format first (default), then HTML4 legacy format.
+	 * Returns UTF-8 as default when no charset declaration is found.
+	 *
+	 * @param string $html The HTML content to detect charset from.
+	 * @return string The detected charset.
+	 */
+	public static function detect_charset( $html ) {
+		// HTML5 (default): <meta charset="...">.
+		if ( preg_match( '/<meta\s+charset=["\']?([^"\'\s>]+)["\']?/i', $html, $matches ) ) {
+			return $matches[1];
+		}
+
+		// HTML4 (legacy): <meta http-equiv="Content-Type" content="text/html; charset=...">.
+		if ( preg_match( '/<meta\s[^>]*?content=["\'][^"\']*?charset=([^"\'\s;]+)/i', $html, $matches ) ) {
+			return $matches[1];
+		}
+
+		// Default: UTF-8.
+		return 'UTF-8';
 	}
 }

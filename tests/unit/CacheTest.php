@@ -1,6 +1,6 @@
 <?php
 /**
- * Unit tests for WP_Blogcard_Cache class.
+ * Unit tests for WWI_Blogcard_Cache class.
  *
  * Testing methodology: t_wada style
  * - Arrange-Act-Assert (Given-When-Then) pattern
@@ -34,10 +34,10 @@ class CacheTest extends TestCase {
 		$url = 'https://example.com/test';
 
 		// Act
-		$cache_key = WP_Blogcard_Cache::get_cache_key( $url );
+		$cache_key = WWI_Blogcard_Cache::get_cache_key( $url );
 
 		// Assert
-		$this->assertStringStartsWith( 'wp_blogcard_', $cache_key );
+		$this->assertStringStartsWith( 'wwi_blogcard_', $cache_key );
 	}
 
 	/**
@@ -50,7 +50,7 @@ class CacheTest extends TestCase {
 		$expected_hash = md5( $url );
 
 		// Act
-		$cache_key = WP_Blogcard_Cache::get_cache_key( $url );
+		$cache_key = WWI_Blogcard_Cache::get_cache_key( $url );
 
 		// Assert
 		$this->assertStringContainsString( $expected_hash, $cache_key );
@@ -63,10 +63,10 @@ class CacheTest extends TestCase {
 	public function get_cache_key_has_correct_format() {
 		// Arrange
 		$url      = 'https://example.com/test';
-		$expected = 'wp_blogcard_' . md5( $url );
+		$expected = 'wwi_blogcard_' . md5( $url );
 
 		// Act
-		$cache_key = WP_Blogcard_Cache::get_cache_key( $url );
+		$cache_key = WWI_Blogcard_Cache::get_cache_key( $url );
 
 		// Assert
 		$this->assertSame( $expected, $cache_key );
@@ -86,8 +86,8 @@ class CacheTest extends TestCase {
 		$url2 = 'https://example.com/page2';
 
 		// Act
-		$key1 = WP_Blogcard_Cache::get_cache_key( $url1 );
-		$key2 = WP_Blogcard_Cache::get_cache_key( $url2 );
+		$key1 = WWI_Blogcard_Cache::get_cache_key( $url1 );
+		$key2 = WWI_Blogcard_Cache::get_cache_key( $url2 );
 
 		// Assert
 		$this->assertNotSame( $key1, $key2 );
@@ -103,8 +103,8 @@ class CacheTest extends TestCase {
 		$url2 = 'https://example.com/search?q=bar';
 
 		// Act
-		$key1 = WP_Blogcard_Cache::get_cache_key( $url1 );
-		$key2 = WP_Blogcard_Cache::get_cache_key( $url2 );
+		$key1 = WWI_Blogcard_Cache::get_cache_key( $url1 );
+		$key2 = WWI_Blogcard_Cache::get_cache_key( $url2 );
 
 		// Assert
 		$this->assertNotSame( $key1, $key2 );
@@ -123,8 +123,8 @@ class CacheTest extends TestCase {
 		$url = 'https://example.com/test';
 
 		// Act
-		$key1 = WP_Blogcard_Cache::get_cache_key( $url );
-		$key2 = WP_Blogcard_Cache::get_cache_key( $url );
+		$key1 = WWI_Blogcard_Cache::get_cache_key( $url );
+		$key2 = WWI_Blogcard_Cache::get_cache_key( $url );
 
 		// Assert
 		$this->assertSame( $key1, $key2 );
@@ -141,7 +141,7 @@ class CacheTest extends TestCase {
 
 		// Act
 		for ( $i = 0; $i < 5; $i++ ) {
-			$keys[] = WP_Blogcard_Cache::get_cache_key( $url );
+			$keys[] = WWI_Blogcard_Cache::get_cache_key( $url );
 		}
 
 		// Assert
@@ -162,7 +162,7 @@ class CacheTest extends TestCase {
 		$expected_seconds = 86400; // 24 * 60 * 60
 
 		// Act
-		$actual_expiration = WP_Blogcard_Cache::CACHE_EXPIRATION;
+		$actual_expiration = WWI_Blogcard_Cache::CACHE_EXPIRATION;
 
 		// Assert
 		$this->assertSame( $expected_seconds, $actual_expiration );
@@ -174,10 +174,10 @@ class CacheTest extends TestCase {
 	 */
 	public function cache_prefix_is_correctly_defined() {
 		// Arrange
-		$expected_prefix = 'wp_blogcard_';
+		$expected_prefix = 'wwi_blogcard_';
 
 		// Act
-		$actual_prefix = WP_Blogcard_Cache::CACHE_PREFIX;
+		$actual_prefix = WWI_Blogcard_Cache::CACHE_PREFIX;
 
 		// Assert
 		$this->assertSame( $expected_prefix, $actual_prefix );
@@ -194,11 +194,11 @@ class CacheTest extends TestCase {
 	public function get_method_is_callable() {
 		// Assert
 		$this->assertTrue(
-			method_exists( 'WP_Blogcard_Cache', 'get' ),
+			method_exists( 'WWI_Blogcard_Cache', 'get' ),
 			'get method should exist'
 		);
 		$this->assertTrue(
-			is_callable( array( 'WP_Blogcard_Cache', 'get' ) ),
+			is_callable( array( 'WWI_Blogcard_Cache', 'get' ) ),
 			'get method should be callable'
 		);
 	}
@@ -210,11 +210,11 @@ class CacheTest extends TestCase {
 	public function set_method_is_callable() {
 		// Assert
 		$this->assertTrue(
-			method_exists( 'WP_Blogcard_Cache', 'set' ),
+			method_exists( 'WWI_Blogcard_Cache', 'set' ),
 			'set method should exist'
 		);
 		$this->assertTrue(
-			is_callable( array( 'WP_Blogcard_Cache', 'set' ) ),
+			is_callable( array( 'WWI_Blogcard_Cache', 'set' ) ),
 			'set method should be callable'
 		);
 	}
@@ -226,11 +226,11 @@ class CacheTest extends TestCase {
 	public function delete_method_is_callable() {
 		// Assert
 		$this->assertTrue(
-			method_exists( 'WP_Blogcard_Cache', 'delete' ),
+			method_exists( 'WWI_Blogcard_Cache', 'delete' ),
 			'delete method should exist'
 		);
 		$this->assertTrue(
-			is_callable( array( 'WP_Blogcard_Cache', 'delete' ) ),
+			is_callable( array( 'WWI_Blogcard_Cache', 'delete' ) ),
 			'delete method should be callable'
 		);
 	}
@@ -242,11 +242,11 @@ class CacheTest extends TestCase {
 	public function clear_all_method_is_callable() {
 		// Assert
 		$this->assertTrue(
-			method_exists( 'WP_Blogcard_Cache', 'clear_all' ),
+			method_exists( 'WWI_Blogcard_Cache', 'clear_all' ),
 			'clear_all method should exist'
 		);
 		$this->assertTrue(
-			is_callable( array( 'WP_Blogcard_Cache', 'clear_all' ) ),
+			is_callable( array( 'WWI_Blogcard_Cache', 'clear_all' ) ),
 			'clear_all method should be callable'
 		);
 	}

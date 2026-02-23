@@ -1,6 +1,6 @@
 <?php
 /**
- * Integration tests for WP_Blogcard_REST_API class.
+ * Integration tests for WWI_Blogcard_REST_API class.
  *
  * Testing methodology: t_wada style
  * - Arrange-Act-Assert (Given-When-Then) pattern
@@ -25,7 +25,7 @@ class RestApiTest extends TestCase {
 	/**
 	 * REST API instance.
 	 *
-	 * @var WP_Blogcard_REST_API
+	 * @var WWI_Blogcard_REST_API
 	 */
 	private $rest_api;
 
@@ -36,7 +36,7 @@ class RestApiTest extends TestCase {
 	 */
 	protected function set_up() {
 		parent::set_up();
-		$this->rest_api = new WP_Blogcard_REST_API();
+		$this->rest_api = new WWI_Blogcard_REST_API();
 	}
 
 	// =========================================================================
@@ -209,10 +209,10 @@ class RestApiTest extends TestCase {
 	 */
 	public function namespace_is_correctly_defined() {
 		// Arrange
-		$expected_namespace = 'wp-blogcard/v1';
+		$expected_namespace = 'wwi-blogcard/v1';
 
 		// Act
-		$actual_namespace = WP_Blogcard_REST_API::NAMESPACE;
+		$actual_namespace = WWI_Blogcard_REST_API::NAMESPACE;
 
 		// Assert
 		$this->assertSame( $expected_namespace, $actual_namespace );
