@@ -16,12 +16,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 	define( 'ABSPATH', '/tmp/wordpress/' );
 }
 
-if ( ! defined( 'WP_BLOGCARD_VERSION' ) ) {
-	define( 'WP_BLOGCARD_VERSION', '1.0.0' );
+if ( ! defined( 'WWI_BLOGCARD_VERSION' ) ) {
+	define( 'WWI_BLOGCARD_VERSION', '1.0.0' );
 }
 
-if ( ! defined( 'WP_BLOGCARD_PLUGIN_DIR' ) ) {
-	define( 'WP_BLOGCARD_PLUGIN_DIR', dirname( __DIR__ ) . '/' );
+if ( ! defined( 'WWI_BLOGCARD_PLUGIN_DIR' ) ) {
+	define( 'WWI_BLOGCARD_PLUGIN_DIR', dirname( __DIR__ ) . '/' );
 }
 
 if ( ! defined( 'DAY_IN_SECONDS' ) ) {
@@ -215,6 +215,6 @@ if ( ! function_exists( 'delete_transient' ) ) {
 }
 
 // Load plugin files.
-require_once WP_BLOGCARD_PLUGIN_DIR . 'includes/class-wp-blogcard-cache.php';
-require_once WP_BLOGCARD_PLUGIN_DIR . 'includes/class-wp-blogcard-ogp-fetcher.php';
-require_once WP_BLOGCARD_PLUGIN_DIR . 'includes/class-wp-blogcard-rest-api.php';
+require_once WWI_BLOGCARD_PLUGIN_DIR . 'includes/class-wwi-blogcard-cache.php';
+require_once WWI_BLOGCARD_PLUGIN_DIR . 'includes/class-wwi-blogcard-ogp-fetcher.php';
+require_once WWI_BLOGCARD_PLUGIN_DIR . 'includes/class-wwi-blogcard-rest-api.php';
