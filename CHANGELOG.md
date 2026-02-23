@@ -1,5 +1,9 @@
 # Changelog
 
+## [v1.0.11](https://github.com/whywaita/wwi-blogcard/compare/v1.0.10...v1.0.11) - 2026-02-23
+- fix: handle HTML5 charset declaration in OGP parser by @whywaita in https://github.com/whywaita/wwi-blogcard/pull/44
+- Bump the wordpress group with 8 updates by @dependabot[bot] in https://github.com/whywaita/wwi-blogcard/pull/41
+
 ## [v1.0.10](https://github.com/whywaita/wwi-blogcard/compare/v1.0.9...v1.0.10) - 2026-01-08
 - Fix a link by @whywaita in https://github.com/whywaita/wwi-blogcard/pull/39
 
